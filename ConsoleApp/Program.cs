@@ -5,6 +5,7 @@ using Google.Apis.Sheets.v4.Data;
 using Google.Apis.Util.Store;
 using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,8 @@ namespace ConsoleApp
 {
     class Program
     {
+      static  public Phone Phone { get; private set; }
+
         //Источник
         //https://developers.google.com/sheets/api/quickstart/dotnet
         //Install-Package Google.Apis.Sheets.v4
@@ -28,8 +31,62 @@ namespace ConsoleApp
         static string ApplicationName = "Google Sheets API .NET Quickstart";
         static void Main(string[] args)
         {
-            test2();
+            // test2();
+            connektBD();
         }
+
+        //НЕРАБОТАЕТ
+        public static void connektBD()
+        {
+
+           // using (var db = new SQLiteConnection("mobiles.db", true))
+            using (var context = new ApplicationContext() )
+            {
+                try
+                {
+
+                Console.WriteLine("Соединение с БД");
+                Console.ReadKey();
+
+                context.Phones.Add(new Phone() { NameLogin = "aaa111", Company = "bbb111", NamePass= 777, DateTimeAdd= 17111 });
+               // context.Phones.Add(new Person() { Name = "aaa222", Surname = "bbb222" });
+              ///  context.Phones.Add(new Person() { Name = "aaa333", Surname = "bbb333" });
+
+                    // SQLiteCommand command = new SQLiteCommand("SELECT * FROM 'Phones';");
+
+                    // SQLiteDataReader people = command.ExecuteReader();
+
+                    // while (people.Read())
+                    //{
+                    //    object getname = people[0];
+                    //    Console.WriteLine(getname);
+                    //}
+
+
+                }
+
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Соединение с БД"+ex);
+                    Console.ReadKey();
+                }
+              //  db.Close();
+            }
+
+            Console.WriteLine("Конец метода Соединение с БД");
+            Console.ReadKey();
+        }
+
+        public void connektDB()
+        {
+        String dbFileName;
+        SQLiteConnection m_dbConn  = new SQLiteConnection(); ;
+        SQLiteCommand m_sqlCmd = m_sqlCmd = new SQLiteCommand(); 
+
+        string db = "mobiles.db";
+
+        }
+
 
         public static void test2()
         {
