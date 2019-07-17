@@ -72,142 +72,38 @@ namespace ConsoleApp
 
             ValueRange response = request.Execute();
              IList<IList<Object>> values = response.Values; // получаем таблицу
-             //List<IList<string>> values = response.Values.ToList<string>; // получаем таблицу
-            //List<string> values = response.Values.ToList<>;
-
-           // values.
-
-            //    if (values == null && values.Count < 0)
-
-            //  {
-            //if (values != null && values.Count > 0)
-            //{
-            //   // values.Add();
-            //}
-            var tempList = new List<string>();
-
-            foreach (var tempListtt in  values)
-            {
-                tempList.Add(tempListtt.ToString());
-                
-            }
-
-            foreach (var tempListtt in tempList)
-            {
-                Console.WriteLine(tempListtt);
-
-            }
-
+           
             Console.WriteLine("Содержимое таблицы");
 
-           // tempList.AddRange(values.);
-
-            int inputId = 1234;
+            int countStirnTable = 0;
+            int variableStirnTable = values.Count;
+            var tempList = new List<string>();
             string temph= "";
+
 
             foreach (var row in values)
             {
-                for (int i =0; i< values.Count; i++)
-                {
+                    try
+                    {
+                    temph = $"Организация: {row[0]}, № телефона: {row[1]}, пароль:{row[2]}";
 
-               try{
-
-              if (  values.Contains(null))
-                        {
-                            Console.WriteLine("Ошибка");
-                          //  values.Remove( Convert( row[i]));
-                            Console.ReadKey();
-                        }
-
-
-                if (row[0] == null || string.IsNullOrEmpty(Convert.ToString(row[0])))
-                {
-                            // row[0] = inputId ;
-                            continue;
-                }
-
-                if (row[1] == null) // || string.IsNullOrEmpty(Convert.ToString(row[1])))
-                {
-                      row[i] = "11";
-                   //string temppp = row[1].ToString() ?? "незаданно";
-
-
-                            i++;
-                            // row[i] = inputId;
-                            continue;
-                        }
-
-                if (row[2] == null || string.IsNullOrEmpty(Convert.ToString(row[2])))
-                {
-                   // row[2] = inputId;
-                }
-
+                    // Console.WriteLine("Организация: {0}, № телефона: {1}, пароль:{2}", row[0], row[1], row[2]);
+                    Console.WriteLine(temph);
+                    tempList.Add(temph);
+                     countStirnTable++;
                     }
 
                     catch (Exception ex)
                     {
-                        Console.WriteLine(ex);
-                       // row[i-1] += "yt pflfyyj";
-                        //continue;
-
-                        
+                        Console.WriteLine(ex); 
                     }
                 }
-            }
+         
+            Console.WriteLine($"Завершино Всего в списке {variableStirnTable} строк!/t/n Полученно перебором{countStirnTable}");
             
-
-                //for (int i= 0; i< values.Count; i++)
-                //{
-                //    Console.WriteLine(values.Count);
-                //    if (string.IsNullOrEmpty(Convert.ToString(row[i])))
-                //    {
-
-                //        Console.WriteLine("Ошибка при проверке на null");
-                //        continue;
-                //    }
-                //    Console.WriteLine(row[i]);
-                //}
-
-                //if (values != null && values.Count > 0)
-
-                //if (row[1] == null)
-                //{
-                //    row[1] = "Незаданно!", ;
-                //    Console.WriteLine("Ошибка массива!!!!!");
-                //    row[1] = "Незаданно!";
-                //}
-                //     row.Insert(values.Count+1,tempList);
-                //   // row[2] = "незаданно";
-
-                // Print columns A and E, which correspond to indices 0 and 4.
-                // Console.WriteLine("Организация: {0}, № телефона: {1}, пароль:{2}", row[0], row[1], row[2]);
-
-                //if (row[1] == null || string.IsNullOrEmpty(Convert.ToString(row[1])))
-                //{
-                //    row[1] = 0;
-                //}
-
-
-
-
-                //  user?.Phone?.Company?.Name ?? "не установлено";
-               // string temppp = row[1].ToString() ?? "незаданно";
-                // onsole.WriteLine($"Организация: {row[0]},№ телефона: {row[1].ToString() ?? "незаданно"}");
-
-                // Console.WriteLine($"Организация: {row[0]});//,№ телефона: {row[1].ToString() ?? "незаданно"}");
-              //  Console.WriteLine(temppp);
-                // FirstOrDefault
-
-            
-            //}
-
-            //else
-            //{
-            Console.WriteLine("Завершино");
-            //}
             Console.Read();
         }
     }
 
- }
+}
     
