@@ -111,6 +111,13 @@
     </None>
     <None Include="mobiles.db" />
     <None Include="packages.config" />
+    <None Include="testBD.db" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\SQLite_Solution\SQLiteApp\SQLiteApp.csproj">
+      <Project>{7C1D57C5-9A31-4249-995F-EF800F7D1170}</Project>
+      <Name>SQLiteApp</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.111.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.111.0\build\net46\System.Data.SQLite.Core.targets')" />

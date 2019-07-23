@@ -17,6 +17,7 @@ namespace ConsoleApp
     class Program
     {
       static  public Phone Phone { get; private set; }
+        string log = "Журнал событий: \t\n";
 
         //Источник
         //https://developers.google.com/sheets/api/quickstart/dotnet
@@ -77,20 +78,41 @@ namespace ConsoleApp
             Console.ReadKey();
         }
 
+        /// <summary>
+        /// тестовой метод присоединение к БД
+        /// </summary>
         public void connektDB()
         {
-            const string databaseName = @"mobiles.db;
-            SQLiteConnection connection =
-            new SQLiteConnection(string.Format("Data Source={0};", databaseName));
-            connection.Open();
-            SQLiteCommand command = new SQLiteCommand("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name;", connection);
-            SQLiteDataReader reader = command.ExecuteReader();
-            foreach (DbDataRecord record in reader)
-                Console.WriteLine("Таблица: " + record["name"]);
-            connection.Close();
-            Console.WriteLine("Готово");
-            Console.ReadKey(true);
-            string db = "mobiles.db";
+            //const string databaseName = @"mobiles.db;
+            //SQLiteConnection connection =
+            //new SQLiteConnection(string.Format("Data Source={0};", databaseName));
+            //connection.Open();
+            //SQLiteCommand command = new SQLiteCommand("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name;", connection);
+            //SQLiteDataReader reader = command.ExecuteReader();
+            //foreach (DbDataRecord record in reader)
+            //    Console.WriteLine("Таблица: " + record["name"]);
+            //connection.Close();
+            //Console.WriteLine("Готово");
+            //Console.ReadKey(true);
+            //string db = "mobiles.db";
+
+            string connectBD = "testDB.bd";
+
+            try
+            {
+                SQLiteConnection connectionBDTEst = new SQLiteConnection(string.Format(connectBD));
+
+            }
+            catch(Exception ex)
+            {
+                log += "Ошибка при подключению к БД \t\n";
+                log += ex.ToString();
+            }
+
+           
+
+
+
 
         }
 
