@@ -17,7 +17,7 @@ namespace ConsoleApp
     class Program
     {
       static  public Phone Phone { get; private set; }
-        string log = "Журнал событий: \t\n";
+       static string log = "Журнал событий: \t\n";
 
         //Источник
         //https://developers.google.com/sheets/api/quickstart/dotnet
@@ -33,7 +33,7 @@ namespace ConsoleApp
         static void Main(string[] args)
         {
             // test2();
-            connektBD();
+            connektDB();
         }
 
         //НЕРАБОТАЕТ
@@ -81,7 +81,7 @@ namespace ConsoleApp
         /// <summary>
         /// тестовой метод присоединение к БД
         /// </summary>
-        public void connektDB()
+        public static void connektDB()
         {
             //const string databaseName = @"mobiles.db;
             //SQLiteConnection connection =
@@ -96,21 +96,24 @@ namespace ConsoleApp
             //Console.ReadKey(true);
             //string db = "mobiles.db";
 
-            string connectBD = "testDB.bd";
+            string connectBD = "testDB.db";
 
             try
             {
-                SQLiteConnection connectionBDTEst = new SQLiteConnection(string.Format(connectBD));
+                SQLiteConnection connectionBDTEst = new SQLiteConnection("Data Sourse=testDB.bd; Version=3");
+                connectionBDTEst.Open();
 
+                Console.ReadKey();
             }
             catch(Exception ex)
             {
-                log += "Ошибка при подключению к БД \t\n";
+                log += "Ошибка при подключению к БД testDB.bd \t\n";
                 log += ex.ToString();
+                Console.WriteLine(log);
             }
 
-           
 
+            Console.ReadKey();
 
 
 
