@@ -1,16 +1,19 @@
-﻿using Google.Apis.Auth.OAuth2;
+﻿using ConsoleApp.Model;
+using Google.Apis.Auth.OAuth2;
 using Google.Apis.Services;
 using Google.Apis.Sheets.v4;
 using Google.Apis.Sheets.v4.Data;
 using Google.Apis.Util.Store;
 using System;
 using System.Collections.Generic;
+using System.Data.OleDb;
 using System.Data.SQLite;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ConsoleApp
 {
@@ -18,6 +21,7 @@ namespace ConsoleApp
     {
       static  public Phone Phone { get; private set; }
        static string log = "Журнал событий: \t\n";
+       
 
         //Источник
         //https://developers.google.com/sheets/api/quickstart/dotnet
@@ -32,8 +36,13 @@ namespace ConsoleApp
         static string ApplicationName = "Google Sheets API .NET Quickstart";
         static void Main(string[] args)
         {
-            // test2();
-            connektDB();
+           //  test2();
+            //connektDB();
+
+           // ConnektEnityDBAddClass(); //работа с тестовой базой; //Добавление в БД
+           // AddDataUser(); //Чтение из БД
+
+            SaveExelTable(); //Запись в ексел
         }
 
         //НЕРАБОТАЕТ
@@ -96,21 +105,21 @@ namespace ConsoleApp
             //Console.ReadKey(true);
             //string db = "mobiles.db";
 
-            string connectBD = "testDB.db";
+            //string connectBD = "testDB.db";
 
-            try
-            {
-                SQLiteConnection connectionBDTEst = new SQLiteConnection("Data Sourse=testDB.bd; Version=3");
-                connectionBDTEst.Open();
+            //try
+            //{
+            //    connectionBDTEst = new SQLiteConnection("Data Sourse=testDB.bd; Version=3");
+            //    connectionBDTEst.Open();
 
-                Console.ReadKey();
-            }
-            catch(Exception ex)
-            {
-                log += "Ошибка при подключению к БД testDB.bd \t\n";
-                log += ex.ToString();
-                Console.WriteLine(log);
-            }
+            //    Console.ReadKey();
+            //}
+            //catch(Exception ex)
+            //{
+            //    log += "Ошибка при подключению к БД testDB.bd \t\n";
+            //    log += ex.ToString();
+            //    Console.WriteLine(log);
+            //}
 
 
             Console.ReadKey();
@@ -119,9 +128,131 @@ namespace ConsoleApp
 
         }
 
+        public static void ConnektEnityDBAddClass()
+        {
+            using (UserContext db = new UserContext())
+            {
+                // создаем два объекта User
+                User user1 = new User { Name = "Первонах", Age = 30 };
+                User user2 = new User { Name = "Второнах", Age = 25 };
+
+                // добавляем их в бд
+                db.Users.Add(user1);
+                db.Users.Add(user2);
+                db.SaveChanges(); // сохранение действий с БД
+
+                log += "Записанный в БД текущие обьекты: \t\n user1 и user2 \t\n";
+
+                Console.WriteLine("Что то записалось в БД");
+            }
+            Console.WriteLine(log);
+            Console.ReadKey();
+
+            
+        }
+         
+        /// <summary>
+        /// Полученние данных из БД
+        /// </summary>
+        public static void AddDataUser()
+        {
+            
+            using (UserContext db = new UserContext())
+            {
+                Console.WriteLine("Получение данных из БД");
+
+
+                var temDb = db.Users; // получаем данные из Базы жанных
+                log += $"Получаем данные из Базы данных!!!\t\n Количество элементов в БД {temDb.Count()}\t\n" ;
+
+                foreach (User user in temDb)
+                {
+                    string tempUsr = $"ID{user.Id} ИМЯ:{user.Name} Возраст:{user.Age} \t\n";
+                    Console.WriteLine(tempUsr);
+                    SaveFileText(tempUsr,"logWriterBD.txt");
+                }
+                
+            }
+            Console.WriteLine(log);
+            Console.ReadKey();
+        }
 
         /// <summary>
-        /// Метод для считывания страниц таблиц гугла
+        /// Запись текста в файл
+        /// </summary>
+        /// <param name="text"></param>
+        public static void SaveFileText( string text, string nameLog = "Тимы клиентов.txt")
+        {
+           // string patchText = "Тимы клиентов.txt";
+            string patchText = nameLog;
+
+            try
+            {   // запись в файл. С дозаписью
+                using (StreamWriter sw = new StreamWriter(patchText, true, System.Text.Encoding.Default))
+                {
+                   // sw.WriteLine("Дозапись");
+                    sw.Write(text); // запись
+                }
+            }
+            catch (Exception ex)
+            {
+                log+="АХТУНГ призошла ошибка при записи текстового файла";
+            }
+
+        }
+        /// <summary>
+        /// Запись в таблицу ексель
+        /// </summary>
+
+
+        public static void SaveExelTable()
+        {
+            Console.WriteLine("Попытка записи в ексель файл ");
+          //  string path = "c:\\Jurnal\\Журнал учета файлов.xls";
+            string path = "Журнал учета файлов.xls";
+
+            if (!File.Exists(path))
+                SQLiteConnection.CreateFile(path);
+
+            OleDbConnection excelConnection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source='Журнал учета файлов.xls';Extended Properties=Excel 8.0;");
+
+            try
+            {
+
+               string nameoffile = "Тест1";
+                long fsize = 1050;
+                string date_cr = "2019";
+               string date_cr_time = DateTime.Now.ToString();
+                int nom = 1;
+
+                 string sqlStquery = "Insert into [БД$]([Имя файла],[Размер файла],[Дата создания],[Время создания],[Номер]) Values('" + nameoffile + "','"
+                    + fsize + "','" + date_cr + "','" + date_cr_time + "','" + nom + "')";
+               // string еучеее = "текстовой текст";
+               // string sqlStquery =  "Insert into [БД$]([Имя файла] Values('"+еучеее+"')";
+
+                excelConnection.Open();
+
+                OleDbDataAdapter dbadapter = new OleDbDataAdapter(sqlStquery, excelConnection);
+
+                dbadapter.SelectCommand.ExecuteNonQuery();
+                dbadapter.Dispose();
+
+
+                excelConnection.Close();
+                excelConnection.Dispose();
+            }
+            catch (Exception ex)
+            {
+                excelConnection.Close();
+                excelConnection.Dispose();
+                Console.WriteLine("Ошибка при записи в ексель файл "+ex);
+                // MessageBox.Show("Error :" + ex.ToString());
+
+            }
+            Console.ReadKey();
+        }
+        /// <summary>
+        /// Скачиваем данные из таблицы гугл. Тимы и пароли
         /// </summary>
         public static void test2()
         {
@@ -183,6 +314,7 @@ namespace ConsoleApp
                     Console.WriteLine(temph);
                     tempList.Add(temph);
                      countStirnTable++;
+                    SaveFileText(temph);
                     }
 
                     catch (Exception ex)
