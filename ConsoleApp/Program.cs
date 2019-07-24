@@ -40,9 +40,9 @@ namespace ConsoleApp
             //connektDB();
 
            // ConnektEnityDBAddClass(); //работа с тестовой базой; //Добавление в БД
-           // AddDataUser(); //Чтение из БД
+            AddDataUser(); //Чтение из БД
 
-            SaveExelTable(); //Запись в ексел
+           // SaveExelTable(); //Запись в ексел Пока не работает
         }
 
         //НЕРАБОТАЕТ
@@ -128,6 +128,9 @@ namespace ConsoleApp
 
         }
 
+        /// <summary>
+        /// Добавление в данных в БД
+        /// </summary>
         public static void ConnektEnityDBAddClass()
         {
             using (UserContext db = new UserContext())
@@ -150,7 +153,30 @@ namespace ConsoleApp
 
             
         }
-         
+
+        public static void ConnektEnityGoogleTabl()
+        {
+            using (UserContext db = new UserContext())
+            {
+                // создаем два объекта User
+                User user1 = new User { Name = "Первонах", Age = 30 };
+                User user2 = new User { Name = "Второнах", Age = 25 };
+
+                // добавляем их в бд
+                db.Users.Add(user1);
+                db.Users.Add(user2);
+                db.SaveChanges(); // сохранение действий с БД
+
+                log += "Записанный в БД текущие обьекты: \t\n user1 и user2 \t\n";
+
+                Console.WriteLine("Что то записалось в БД");
+            }
+            Console.WriteLine(log);
+            Console.ReadKey();
+
+
+        }
+
         /// <summary>
         /// Полученние данных из БД
         /// </summary>
@@ -207,14 +233,19 @@ namespace ConsoleApp
 
         public static void SaveExelTable()
         {
+            // https://www.codeproject.com/Tips/705470/Read-and-Write-Excel-Documents-Using-OLEDB
+            //http://www.cyberforum.ru/csharp-net/thread709715.html
             Console.WriteLine("Попытка записи в ексель файл ");
           //  string path = "c:\\Jurnal\\Журнал учета файлов.xls";
-            string path = "Журнал учета файлов.xls";
+            string path = "Журнал учета файлов.xls"; //
 
             if (!File.Exists(path))
                 SQLiteConnection.CreateFile(path);
 
-            OleDbConnection excelConnection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source='Журнал учета файлов.xls';Extended Properties=Excel 8.0;");
+            string coonekTexel = GetConnectionString();
+
+           // OleDbConnection excelConnection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source='Журнал учета файлов.xls';Extended Properties=Excel 12.0;");
+            OleDbConnection excelConnection = new OleDbConnection(coonekTexel);
 
             try
             {
@@ -251,6 +282,35 @@ namespace ConsoleApp
             }
             Console.ReadKey();
         }
+
+        private static string GetConnectionString()
+        {
+            Dictionary<string, string> props = new Dictionary<string, string>();
+            string path = "Журнал учета файлов.xls"; //
+            // XLSX - Excel 2007, 2010, 2012, 2013
+            props["Provider"] = "Microsoft.ACE.OLEDB.12.0;";
+            props["Extended Properties"] = "Excel 12.0 XML";
+           // props["Data Source"] = "C:\\MyExcel.xlsx";
+            props["Data Source"] = path;
+
+            // XLS - Excel 2003 and Older
+            //props["Provider"] = "Microsoft.Jet.OLEDB.4.0";
+            //props["Extended Properties"] = "Excel 8.0";
+            //props["Data Source"] = "C:\\MyExcel.xls";
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach (KeyValuePair<string, string> prop in props)
+            {
+                sb.Append(prop.Key);
+                sb.Append('=');
+                sb.Append(prop.Value);
+                sb.Append(';');
+            }
+
+            return sb.ToString();
+        }
+
         /// <summary>
         /// Скачиваем данные из таблицы гугл. Тимы и пароли
         /// </summary>
