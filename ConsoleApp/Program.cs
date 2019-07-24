@@ -36,11 +36,13 @@ namespace ConsoleApp
         static string ApplicationName = "Google Sheets API .NET Quickstart";
         static void Main(string[] args)
         {
-           //  test2();
+            //  test2();
             //connektDB();
 
-           // ConnektEnityDBAddClass(); //работа с тестовой базой; //Добавление в БД
+            // ConnektEnityDBAddClass(); //работа с тестовой базой; //Добавление в БД
+            //
             AddDataUser(); //Чтение из БД
+            ConnektGoogleTabl(); // работа с Таблицами гугла
 
            // SaveExelTable(); //Запись в ексел Пока не работает
         }
@@ -149,11 +151,12 @@ namespace ConsoleApp
                 Console.WriteLine("Что то записалось в БД");
             }
             Console.WriteLine(log);
-            Console.ReadKey();
-
-            
+            Console.ReadKey();   
         }
 
+      /// <summary>
+      /// Добавление в БАЗУ данных Таблиц Гугл
+      /// </summary>
         public static void ConnektEnityGoogleTabl()
         {
             using (UserContext db = new UserContext())
@@ -171,11 +174,36 @@ namespace ConsoleApp
 
                 Console.WriteLine("Что то записалось в БД");
             }
+
             Console.WriteLine(log);
             Console.ReadKey();
-
-
         }
+
+        public static void ConnektGoogleTabl()
+        {
+            using (TablGoogleContext db = new TablGoogleContext())
+            {
+                // создаем два объекта User
+                TablGoogle tablGoogle = new TablGoogle { NameClienta = "Первый клиент", PassClient = "12345" };
+                TablGoogle tablGoogle2 = new TablGoogle { NameClienta = "Второй клиент", PassClient = "7777" };
+                // User user2 = new User { Name = "Второнах", Age = 25 };
+
+                // добавляем их в бд
+                db.TablGoogles.Add(tablGoogle);
+                db.TablGoogles.Add(tablGoogle2);
+                //db.Users.Add(user1);
+                //db.Users.Add(user2);
+                db.SaveChanges(); // сохранение действий с БД
+
+                log += "Записанный в БД текущие обьекты: \t\n tablGoogle и tablGoogle2 \t\n";
+
+                Console.WriteLine("Что то записалось в БД");
+            }
+
+            Console.WriteLine(log);
+            Console.ReadKey();
+        }
+
 
         /// <summary>
         /// Полученние данных из БД

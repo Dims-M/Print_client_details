@@ -10,11 +10,11 @@ namespace ConsoleApp.Model
     /// Класс описывает пользователя
     /// Каждое свойство будет сопоставляться с отдельным столбцом в таблице из бд.
     /// </summary>
-    class TablGoogle
+   public class TablGoogle
     {
         //Автосвойства для хранения данных плучаемых из БД
         public int Id { get; set; }
         public string NameClienta { get; set; }
-        public int PassClient { get; set; }
+        public string PassClient { get; set; }
     }
 }
