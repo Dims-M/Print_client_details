@@ -41,9 +41,9 @@ namespace ConsoleApp
 
             // ConnektEnityDBAddClass(); //работа с тестовой базой; //Добавление в БД
             //
-            AddDataUser(); //Чтение из БД
-            ConnektGoogleTabl(); // работа с Таблицами гугла
-
+            //AddDataUser(); //Чтение из БД
+           // ConnektGoogleTabl(); // работа с Таблицами гугла
+            AddDataTableGoogle(); //Получение данных из БД
            // SaveExelTable(); //Запись в ексел Пока не работает
         }
 
@@ -155,7 +155,7 @@ namespace ConsoleApp
         }
 
       /// <summary>
-      /// Добавление в БАЗУ данных Таблиц Гугл
+      /// Добавление в БАЗУ данных Тестовой БД
       /// </summary>
         public static void ConnektEnityGoogleTabl()
         {
@@ -179,6 +179,9 @@ namespace ConsoleApp
             Console.ReadKey();
         }
 
+        /// <summary>
+        /// Добавление в БД гугле таблиц
+        /// </summary>
         public static void ConnektGoogleTabl()
         {
             using (TablGoogleContext db = new TablGoogleContext())
@@ -204,6 +207,31 @@ namespace ConsoleApp
             Console.ReadKey();
         }
 
+        /// <summary>
+        /// Полученние данных из БД из Таблиц гугла
+        /// </summary>
+        public static void AddDataTableGoogle()
+        {
+
+            using (TablGoogleContext db = new TablGoogleContext())
+            {
+                Console.WriteLine("Получение данных из БД");
+
+
+                var temDb = db.TablGoogles; // получаем данные из Базы lанных
+                log += $"Получаем данные из Базы данных!!!\t\n Количество элементов в БД {temDb.Count()}\t\n";
+
+                foreach (TablGoogle user in temDb)
+                {
+                    string tempUsr = $"ID{user.Id} ИМЯ:{user.NameClienta} Телефоны:{user.PassClient} \t\n";
+                    Console.WriteLine(tempUsr);
+                    SaveFileText(tempUsr, "logWriterBD.txt");
+                }
+
+            }
+            Console.WriteLine(log);
+            Console.ReadKey();
+        }
 
         /// <summary>
         /// Полученние данных из БД
