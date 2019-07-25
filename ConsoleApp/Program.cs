@@ -13,7 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Excel = Microsoft.Office.Interop.Excel;
+//using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ConsoleApp
 {
@@ -21,7 +21,7 @@ namespace ConsoleApp
     {
       static  public Phone Phone { get; private set; }
        static string log = "Журнал событий: \t\n";
-       
+        //Команда Update-Package
 
         //Источник
         //https://developers.google.com/sheets/api/quickstart/dotnet
