@@ -131,7 +131,7 @@ namespace ConsoleApp
         }
 
         /// <summary>
-        /// Добавление в данных в БД
+        /// Добавление в данных в БД таблица 
         /// </summary>
         public static void ConnektEnityDBAddClass()
         {
