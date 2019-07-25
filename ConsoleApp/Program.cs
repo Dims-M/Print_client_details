@@ -36,14 +36,14 @@ namespace ConsoleApp
         static string ApplicationName = "Google Sheets API .NET Quickstart";
         static void Main(string[] args)
         {
-            //  test2();
+              test2();
             //connektDB();
 
             // ConnektEnityDBAddClass(); //работа с тестовой базой; //Добавление в БД
             //
             //AddDataUser(); //Чтение из БД
            // ConnektGoogleTabl(); // работа с Таблицами гугла
-            AddDataTableGoogle(); //Получение данных из БД
+           // AddDataTableGoogle(); //Получение данных из БД
            // SaveExelTable(); //Запись в ексел Пока не работает
         }
 
@@ -206,6 +206,35 @@ namespace ConsoleApp
             Console.WriteLine(log);
             Console.ReadKey();
         }
+
+
+        public static void AddTableToSqllite(TablGoogle tablGoogle)
+        {
+            using (TablGoogleContext db = new TablGoogleContext())
+            {
+                // создаем два объекта User
+                TablGoogle tablGoogle1 = new TablGoogle ();
+                tablGoogle1 = tablGoogle;
+               // TablGoogle tablGoogle2 = new TablGoogle { NameClienta = "Второй клиент", PassClient = "7777" };
+                // User user2 = new User { Name = "Второнах", Age = 25 };
+
+                // добавляем их в бд
+                db.TablGoogles.Add(tablGoogle);
+                //db.TablGoogles.Add(tablGoogle2);
+                //db.Users.Add(user1);
+                //db.Users.Add(user2);
+                db.SaveChanges(); // сохранение действий с БД
+
+                log += "Записанный в БД текущие обьекты: \t\n tablGoogle и tablGoogle2 \t\n";
+
+                Console.WriteLine($"Что то записалось в БД{tablGoogle1}");
+            }
+
+            Console.WriteLine(log);
+            Console.ReadKey();
+        }
+
+
 
         /// <summary>
         /// Полученние данных из БД из Таблиц гугла
@@ -431,6 +460,10 @@ namespace ConsoleApp
                     tempList.Add(temph);
                      countStirnTable++;
                     SaveFileText(temph);
+
+                    TablGoogle tablGoogle1 = new TablGoogle {NameClienta = row[0].ToString(), PassClient = row[1].ToString() };
+                    AddTableToSqllite(tablGoogle1);
+
                     }
 
                     catch (Exception ex)
