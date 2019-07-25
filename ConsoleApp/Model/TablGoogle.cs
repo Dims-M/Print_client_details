@@ -16,5 +16,8 @@ namespace ConsoleApp.Model
         public int Id { get; set; }
         public string NameClienta { get; set; }
         public string PassClient { get; set; }
+        public string TelefonClient { get; set; }
+
+
     }
 }

@@ -225,13 +225,13 @@ namespace ConsoleApp
                 //db.Users.Add(user2);
                 db.SaveChanges(); // сохранение действий с БД
 
-                log += "Записанный в БД текущие обьекты: \t\n tablGoogle и tablGoogle2 \t\n";
+               // log += "Записанный в БД текущие обьекты: \t\n tablGoogle и tablGoogle2 \t\n";
 
-                Console.WriteLine($"Что то записалось в БД{tablGoogle1}");
+               // Console.WriteLine($"Что то записалось в БД{tablGoogle1}");
             }
 
-            Console.WriteLine(log);
-            Console.ReadKey();
+         //   Console.WriteLine(log);
+           // Console.ReadKey();
         }
 
 
@@ -448,7 +448,11 @@ namespace ConsoleApp
             var tempList = new List<string>();
             string temph= "";
 
-
+            using (TablGoogleContext db = new TablGoogleContext())
+            {
+                // создаем два объекта User
+                TablGoogle tablGoogle = new TablGoogle();
+           
             foreach (var row in values)
             {
                     try
@@ -461,9 +465,10 @@ namespace ConsoleApp
                      countStirnTable++;
                     SaveFileText(temph);
 
-                    TablGoogle tablGoogle1 = new TablGoogle {NameClienta = row[0].ToString(), PassClient = row[1].ToString() };
-                    AddTableToSqllite(tablGoogle1);
+                    TablGoogle tablGoogle1 = new TablGoogle {NameClienta = row[0].ToString(), TelefonClient = row[2].ToString(), PassClient = row[1].ToString() };
 
+                       // db.TablGoogles.Add(  new TablGoogle { NameClienta = row[0].ToString(), TelefonClient = row[2].ToString(), PassClient = row[1].ToString() });
+                        db.TablGoogles.Add(tablGoogle1); // добавление в бд
                     }
 
                     catch (Exception ex)
@@ -472,9 +477,13 @@ namespace ConsoleApp
                     }
                 }
          
+                Console.WriteLine($"Завершино Всего в списке {variableStirnTable} строк!/t/n Полученно перебором{countStirnTable}");
+                db.SaveChanges(); // сохранение действий с БД
+                Console.Read();
+        }
             Console.WriteLine($"Завершино Всего в списке {variableStirnTable} строк!/t/n Полученно перебором{countStirnTable}");
-            
             Console.Read();
+           
         }
     }
 
