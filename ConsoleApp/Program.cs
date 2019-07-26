@@ -15,6 +15,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 //using Excel = Microsoft.Office.Interop.Excel;
+using CodeFirst;
 
 namespace ConsoleApp
 {
@@ -494,7 +495,29 @@ namespace ConsoleApp
             Console.Read();
 
         }
+
+
+        public void zapuskBL()
+        {
+            // В этой точке непосредственно начинается работа с Entity Framework
+
+            // Создать объект контекста
+            SampleContext context = new SampleContext();
+
+            Customer customer = new Customer { Age = 100, Email = "sd@mil.ru", Name = "Первонах" };
+
+            // Вставить данные в таблицу Customers с помощью LINQ
+            context.Customers.Add(customer);
+
+            // Сохранить изменения в БД
+            context.SaveChanges();
+        }
+
     }
+
+
+      
+
 
 }
     
