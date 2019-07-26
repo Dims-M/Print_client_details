@@ -469,7 +469,7 @@ namespace ConsoleApp
                         countStirnTable++;
                         SaveFileText(temph);
 
-                        TablGoogle tablGoogle1 = new TablGoogle { NameClienta = row[0].ToString(), TelefonClient = row[1].ToString(), PassClient = row[2].ToString(), DataTimeAddTable=DateTime.Now.ToString() };
+                        TablGoogle tablGoogle1 = new TablGoogle { NameClienta = row[0].ToString(), TelefonClient = row[1].ToString(), PassClient = row[2].ToString(), DataTimeAddTable=(DateTime.Now.ToString()) };
 
                         // db.TablGoogles.Add(  new TablGoogle { NameClienta = row[0].ToString(), TelefonClient = row[2].ToString(), PassClient = row[1].ToString() });
                         db.TablGoogles.Add(tablGoogle1); // добавление в бд
