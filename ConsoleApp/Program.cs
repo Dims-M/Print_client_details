@@ -23,6 +23,7 @@ namespace ConsoleApp
       static  public Phone Phone { get; private set; }
        static string log = "Журнал событий: \t\n";
        
+        //Команда Update-Package
 
         //Источник
         //https://developers.google.com/sheets/api/quickstart/dotnet

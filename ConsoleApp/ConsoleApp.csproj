@@ -132,6 +132,9 @@
     <None Include="mobiles.db" />
     <None Include="packages.config" />
     <None Include="testBD.db" />
+    <None Include="TimTablGoogl.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\SQLite_Solution\SQLiteApp\SQLiteApp.csproj">
