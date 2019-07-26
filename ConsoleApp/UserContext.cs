@@ -15,7 +15,7 @@ namespace ConsoleApp
     class UserContext : DbContext
     {
         public UserContext()
-           : base("DbConnection") //"DbConnection" - это имя будущей строки подключения к базе данных
+          // : base("DbConnection") //"DbConnection" - это имя будущей строки подключения к базе данных
         { }
 
         /// <summary>

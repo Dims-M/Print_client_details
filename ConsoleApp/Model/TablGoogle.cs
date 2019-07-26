@@ -18,6 +18,10 @@ namespace ConsoleApp.Model
         public string PassClient { get; set; }
         public string TelefonClient { get; set; }
 
+        /// <summary>
+        /// Свойство даты и времени добавления обьекта.
+        /// </summary>
+        public string DataTimeAddTable{ get; set; } // добавление даты
 
     }
 }

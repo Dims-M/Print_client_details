@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.OleDb;
 using System.Data.SQLite;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,9 @@ namespace ConsoleApp
 {
     class Program
     {
-      static  public Phone Phone { get; private set; }
-       static string log = "Журнал событий: \t\n";
-       
+        static public Phone Phone { get; private set; }
+        static string log = "Журнал событий: \t\n";
+
 
         //Источник
         //https://developers.google.com/sheets/api/quickstart/dotnet
@@ -34,35 +35,36 @@ namespace ConsoleApp
         // at ~/.credentials/sheets.googleapis.com-dotnet-quickstart.json
         static string[] Scopes = { SheetsService.Scope.SpreadsheetsReadonly };
         static string ApplicationName = "Google Sheets API .NET Quickstart";
+        //static string ApplicationName = "Тимы клиентов"; // имя аодключения
         static void Main(string[] args)
         {
-              test2();
+            test2(); // Загрузка  из гугл таблиц и добавления их в БД
             //connektDB();
 
             // ConnektEnityDBAddClass(); //работа с тестовой базой; //Добавление в БД
             //
             //AddDataUser(); //Чтение из БД
-           // ConnektGoogleTabl(); // работа с Таблицами гугла
-           // AddDataTableGoogle(); //Получение данных из БД
-           // SaveExelTable(); //Запись в ексел Пока не работает
+            // ConnektGoogleTabl(); // работа с Таблицами гугла
+            // AddDataTableGoogle(); //Получение данных из БД
+            // SaveExelTable(); //Запись в ексел Пока не работает
         }
 
         //НЕРАБОТАЕТ
         public static void connektBD()
         {
 
-           // using (var db = new SQLiteConnection("mobiles.db", true))
-            using (var context = new ApplicationContext() )
+            // using (var db = new SQLiteConnection("mobiles.db", true))
+            using (var context = new ApplicationContext())
             {
                 try
                 {
 
-                Console.WriteLine("Соединение с БД");
-                Console.ReadKey();
+                    Console.WriteLine("Соединение с БД");
+                    Console.ReadKey();
 
-                context.Phones.Add(new Phone() { NameLogin = "aaa111", Company = "bbb111", NamePass= 777, DateTimeAdd= 17111 });
-               // context.Phones.Add(new Person() { Name = "aaa222", Surname = "bbb222" });
-              ///  context.Phones.Add(new Person() { Name = "aaa333", Surname = "bbb333" });
+                    context.Phones.Add(new Phone() { NameLogin = "aaa111", Company = "bbb111", NamePass = 777, DateTimeAdd = 17111 });
+                    // context.Phones.Add(new Person() { Name = "aaa222", Surname = "bbb222" });
+                    ///  context.Phones.Add(new Person() { Name = "aaa333", Surname = "bbb333" });
 
                     // SQLiteCommand command = new SQLiteCommand("SELECT * FROM 'Phones';");
 
@@ -79,10 +81,10 @@ namespace ConsoleApp
 
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Соединение с БД"+ex);
+                    Console.WriteLine("Соединение с БД" + ex);
                     Console.ReadKey();
                 }
-              //  db.Close();
+                //  db.Close();
             }
 
             Console.WriteLine("Конец метода Соединение с БД");
@@ -135,48 +137,48 @@ namespace ConsoleApp
         /// </summary>
         public static void ConnektEnityDBAddClass()
         {
-            using (UserContext db = new UserContext())
-            {
-                // создаем два объекта User
-                User user1 = new User { Name = "Первонах", Age = 30 };
-                User user2 = new User { Name = "Второнах", Age = 25 };
+            //using (UserContext db = new UserContext())
+            //{
+            //    // создаем два объекта User
+            //    User user1 = new User { Name = "Первонах", Age = 30 };
+            //    User user2 = new User { Name = "Второнах", Age = 25 };
 
-                // добавляем их в бд
-                db.Users.Add(user1);
-                db.Users.Add(user2);
-                db.SaveChanges(); // сохранение действий с БД
+            //    // добавляем их в бд
+            //    db.Users.Add(user1);
+            //    db.Users.Add(user2);
+            //    db.SaveChanges(); // сохранение действий с БД
 
-                log += "Записанный в БД текущие обьекты: \t\n user1 и user2 \t\n";
+            //    log += "Записанный в БД текущие обьекты: \t\n user1 и user2 \t\n";
 
-                Console.WriteLine("Что то записалось в БД");
-            }
-            Console.WriteLine(log);
-            Console.ReadKey();   
+            //    Console.WriteLine("Что то записалось в БД");
+            //}
+            //Console.WriteLine(log);
+            //Console.ReadKey();   
         }
 
-      /// <summary>
-      /// Добавление в БАЗУ данных Тестовой БД
-      /// </summary>
+        /// <summary>
+        /// Добавление в БАЗУ данных Тестовой БД
+        /// </summary>
         public static void ConnektEnityGoogleTabl()
         {
-            using (UserContext db = new UserContext())
-            {
-                // создаем два объекта User
-                User user1 = new User { Name = "Первонах", Age = 30 };
-                User user2 = new User { Name = "Второнах", Age = 25 };
+            //    using (UserContext db = new UserContext())
+            //    {
+            //        создаем два объекта User
+            //        User user1 = new User { Name = "Первонах", Age = 30 };
+            //        User user2 = new User { Name = "Второнах", Age = 25 };
 
-                // добавляем их в бд
-                db.Users.Add(user1);
-                db.Users.Add(user2);
-                db.SaveChanges(); // сохранение действий с БД
+            //        добавляем их в бд
+            //        db.Users.Add(user1);
+            //        db.Users.Add(user2);
+            //        db.SaveChanges(); // сохранение действий с БД
 
-                log += "Записанный в БД текущие обьекты: \t\n user1 и user2 \t\n";
+            //        log += "Записанный в БД текущие обьекты: \t\n user1 и user2 \t\n";
 
-                Console.WriteLine("Что то записалось в БД");
-            }
+            //        Console.WriteLine("Что то записалось в БД");
+            //    }
 
-            Console.WriteLine(log);
-            Console.ReadKey();
+            //    Console.WriteLine(log);
+            //    Console.ReadKey();
         }
 
         /// <summary>
@@ -213,9 +215,9 @@ namespace ConsoleApp
             using (TablGoogleContext db = new TablGoogleContext())
             {
                 // создаем два объекта User
-                TablGoogle tablGoogle1 = new TablGoogle ();
+                TablGoogle tablGoogle1 = new TablGoogle();
                 tablGoogle1 = tablGoogle;
-               // TablGoogle tablGoogle2 = new TablGoogle { NameClienta = "Второй клиент", PassClient = "7777" };
+                // TablGoogle tablGoogle2 = new TablGoogle { NameClienta = "Второй клиент", PassClient = "7777" };
                 // User user2 = new User { Name = "Второнах", Age = 25 };
 
                 // добавляем их в бд
@@ -225,13 +227,13 @@ namespace ConsoleApp
                 //db.Users.Add(user2);
                 db.SaveChanges(); // сохранение действий с БД
 
-               // log += "Записанный в БД текущие обьекты: \t\n tablGoogle и tablGoogle2 \t\n";
+                // log += "Записанный в БД текущие обьекты: \t\n tablGoogle и tablGoogle2 \t\n";
 
-               // Console.WriteLine($"Что то записалось в БД{tablGoogle1}");
+                // Console.WriteLine($"Что то записалось в БД{tablGoogle1}");
             }
 
-         //   Console.WriteLine(log);
-           // Console.ReadKey();
+            //   Console.WriteLine(log);
+            // Console.ReadKey();
         }
 
 
@@ -267,47 +269,47 @@ namespace ConsoleApp
         /// </summary>
         public static void AddDataUser()
         {
-            
-            using (UserContext db = new UserContext())
-            {
-                Console.WriteLine("Получение данных из БД");
+
+            //using (UserContext db = new UserContext())
+            //{
+            //    Console.WriteLine("Получение данных из БД");
 
 
-                var temDb = db.Users; // получаем данные из Базы жанных
-                log += $"Получаем данные из Базы данных!!!\t\n Количество элементов в БД {temDb.Count()}\t\n" ;
+            //    var temDb = db.Users; // получаем данные из Базы жанных
+            //    log += $"Получаем данные из Базы данных!!!\t\n Количество элементов в БД {temDb.Count()}\t\n";
 
-                foreach (User user in temDb)
-                {
-                    string tempUsr = $"ID{user.Id} ИМЯ:{user.Name} Возраст:{user.Age} \t\n";
-                    Console.WriteLine(tempUsr);
-                    SaveFileText(tempUsr,"logWriterBD.txt");
-                }
-                
-            }
-            Console.WriteLine(log);
-            Console.ReadKey();
+            //    foreach (User user in temDb)
+            //    {
+            //        string tempUsr = $"ID{user.Id} ИМЯ:{user.Name} Возраст:{user.Age} \t\n";
+            //        Console.WriteLine(tempUsr);
+            //        SaveFileText(tempUsr, "logWriterBD.txt");
+            //    }
+
+            //}
+            //Console.WriteLine(log);
+            //Console.ReadKey();
         }
 
         /// <summary>
         /// Запись текста в файл
         /// </summary>
         /// <param name="text"></param>
-        public static void SaveFileText( string text, string nameLog = "Тимы клиентов.txt")
+        public static void SaveFileText(string text, string nameLog = "Тимы клиентов.txt")
         {
-           // string patchText = "Тимы клиентов.txt";
+            // string patchText = "Тимы клиентов.txt";
             string patchText = nameLog;
 
             try
             {   // запись в файл. С дозаписью
                 using (StreamWriter sw = new StreamWriter(patchText, true, System.Text.Encoding.Default))
                 {
-                   // sw.WriteLine("Дозапись");
+                    // sw.WriteLine("Дозапись");
                     sw.Write(text); // запись
                 }
             }
             catch (Exception ex)
             {
-                log+="АХТУНГ призошла ошибка при записи текстового файла";
+                log += "АХТУНГ призошла ошибка при записи текстового файла";
             }
 
         }
@@ -321,7 +323,7 @@ namespace ConsoleApp
             // https://www.codeproject.com/Tips/705470/Read-and-Write-Excel-Documents-Using-OLEDB
             //http://www.cyberforum.ru/csharp-net/thread709715.html
             Console.WriteLine("Попытка записи в ексель файл ");
-          //  string path = "c:\\Jurnal\\Журнал учета файлов.xls";
+            //  string path = "c:\\Jurnal\\Журнал учета файлов.xls";
             string path = "Журнал учета файлов.xls"; //
 
             if (!File.Exists(path))
@@ -329,22 +331,22 @@ namespace ConsoleApp
 
             string coonekTexel = GetConnectionString();
 
-           // OleDbConnection excelConnection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source='Журнал учета файлов.xls';Extended Properties=Excel 12.0;");
+            // OleDbConnection excelConnection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source='Журнал учета файлов.xls';Extended Properties=Excel 12.0;");
             OleDbConnection excelConnection = new OleDbConnection(coonekTexel);
 
             try
             {
 
-               string nameoffile = "Тест1";
+                string nameoffile = "Тест1";
                 long fsize = 1050;
                 string date_cr = "2019";
-               string date_cr_time = DateTime.Now.ToString();
+                string date_cr_time = DateTime.Now.ToString();
                 int nom = 1;
 
-                 string sqlStquery = "Insert into [БД$]([Имя файла],[Размер файла],[Дата создания],[Время создания],[Номер]) Values('" + nameoffile + "','"
-                    + fsize + "','" + date_cr + "','" + date_cr_time + "','" + nom + "')";
-               // string еучеее = "текстовой текст";
-               // string sqlStquery =  "Insert into [БД$]([Имя файла] Values('"+еучеее+"')";
+                string sqlStquery = "Insert into [БД$]([Имя файла],[Размер файла],[Дата создания],[Время создания],[Номер]) Values('" + nameoffile + "','"
+                   + fsize + "','" + date_cr + "','" + date_cr_time + "','" + nom + "')";
+                // string еучеее = "текстовой текст";
+                // string sqlStquery =  "Insert into [БД$]([Имя файла] Values('"+еучеее+"')";
 
                 excelConnection.Open();
 
@@ -361,7 +363,7 @@ namespace ConsoleApp
             {
                 excelConnection.Close();
                 excelConnection.Dispose();
-                Console.WriteLine("Ошибка при записи в ексель файл "+ex);
+                Console.WriteLine("Ошибка при записи в ексель файл " + ex);
                 // MessageBox.Show("Error :" + ex.ToString());
 
             }
@@ -375,7 +377,7 @@ namespace ConsoleApp
             // XLSX - Excel 2007, 2010, 2012, 2013
             props["Provider"] = "Microsoft.ACE.OLEDB.12.0;";
             props["Extended Properties"] = "Excel 12.0 XML";
-           // props["Data Source"] = "C:\\MyExcel.xlsx";
+            // props["Data Source"] = "C:\\MyExcel.xlsx";
             props["Data Source"] = path;
 
             // XLS - Excel 2003 and Older
@@ -402,6 +404,8 @@ namespace ConsoleApp
         public static void test2()
         {
             UserCredential credential;
+            Stopwatch watch = new Stopwatch(); //обьект для замера времени работы программы
+            watch.Start();
 
             using (var stream =
                 new FileStream("credentials.json", FileMode.Open, FileAccess.Read))
@@ -439,51 +443,52 @@ namespace ConsoleApp
             // https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
 
             ValueRange response = request.Execute();
-             IList<IList<Object>> values = response.Values; // получаем таблицу
-           
+            IList<IList<Object>> values = response.Values; // получаем таблицу
+
             Console.WriteLine("Содержимое таблицы");
 
             int countStirnTable = 0;
             int variableStirnTable = values.Count;
             var tempList = new List<string>();
-            string temph= "";
+            string temph = "";
 
             using (TablGoogleContext db = new TablGoogleContext())
             {
                 // создаем два объекта User
                 TablGoogle tablGoogle = new TablGoogle();
-           
-            foreach (var row in values)
-            {
+
+                foreach (var row in values)
+                {
                     try
                     {
-                    temph = $"Организация: {row[0]}, № телефона: {row[1]}, пароль:{row[2]}";
+                        temph = $"Организация: {row[0]}, № телефона: {row[1]}, пароль:{row[2]}";
 
-                    // Console.WriteLine("Организация: {0}, № телефона: {1}, пароль:{2}", row[0], row[1], row[2]);
-                    Console.WriteLine(temph);
-                    tempList.Add(temph);
-                     countStirnTable++;
-                    SaveFileText(temph);
+                        // Console.WriteLine("Организация: {0}, № телефона: {1}, пароль:{2}", row[0], row[1], row[2]);
+                        Console.WriteLine(temph);
+                        tempList.Add(temph);
+                        countStirnTable++;
+                        SaveFileText(temph);
 
-                    TablGoogle tablGoogle1 = new TablGoogle {NameClienta = row[0].ToString(), TelefonClient = row[2].ToString(), PassClient = row[1].ToString() };
+                        TablGoogle tablGoogle1 = new TablGoogle { NameClienta = row[0].ToString(), TelefonClient = row[1].ToString(), PassClient = row[2].ToString(), DataTimeAddTable=DateTime.Now.ToString() };
 
-                       // db.TablGoogles.Add(  new TablGoogle { NameClienta = row[0].ToString(), TelefonClient = row[2].ToString(), PassClient = row[1].ToString() });
+                        // db.TablGoogles.Add(  new TablGoogle { NameClienta = row[0].ToString(), TelefonClient = row[2].ToString(), PassClient = row[1].ToString() });
                         db.TablGoogles.Add(tablGoogle1); // добавление в бд
                     }
 
                     catch (Exception ex)
                     {
-                        Console.WriteLine(ex); 
+                        Console.WriteLine(ex);
                     }
                 }
-         
-                Console.WriteLine($"Завершино Всего в списке {variableStirnTable} строк!/t/n Полученно перебором{countStirnTable}");
+                watch.Stop();
+                Console.WriteLine($"Завершино Всего в списке {variableStirnTable} строк!");
                 db.SaveChanges(); // сохранение действий с БД
                 Console.Read();
-        }
-            Console.WriteLine($"Завершино Всего в списке {variableStirnTable} строк!/t/n Полученно перебором{countStirnTable}");
+            }
+
+            Console.WriteLine($"Завершино Всего в списке {variableStirnTable} строк!/t/n Полученно перебором{countStirnTable}\t\n Время получения списка пользователей и добавения данных {watch.ElapsedMilliseconds} милисекунд или {watch.Elapsed.Seconds}секунд \t\n");
             Console.Read();
-           
+
         }
     }
 
