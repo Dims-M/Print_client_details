@@ -12,8 +12,8 @@ namespace ConsoleApp
     {
 
         public TablGoogleContext()
-          : base("DbConnection1") //"DbConnection" - это имя будущей строки подключения к базе данных
-        // : base("DefaultConnectionSqlLite") //"DbConnection" - это имя будущей строки подключения к базе данных
+        //  : base("DbConnection1") //"DbConnection" - это имя будущей строки подключения к базе данных
+         : base("DefaultConnectionSqlLite") //"DbConnection" - это имя будущей строки подключения к базе данных
         { }
 
         /// <summary>

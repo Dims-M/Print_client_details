@@ -455,7 +455,7 @@ namespace ConsoleApp
 
             using (TablGoogleContext db = new TablGoogleContext())
             {
-                // создаем два объекта User
+                // создаем два объекта TablGoogle
                 TablGoogle tablGoogle = new TablGoogle();
 
                 foreach (var row in values)
@@ -466,14 +466,17 @@ namespace ConsoleApp
 
                         // Console.WriteLine("Организация: {0}, № телефона: {1}, пароль:{2}", row[0], row[1], row[2]);
                         Console.WriteLine(temph);
+
                         tempList.Add(temph);
                         countStirnTable++;
                         SaveFileText(temph);
 
                         TablGoogle tablGoogle1 = new TablGoogle { NameClienta = row[0].ToString(), TelefonClient = row[1].ToString(), PassClient = row[2].ToString(), DataTimeAddTable=(DateTime.Now.ToString()) };
+                       // TablGoogle tablGoogle1 = new TablGoogle { NameClienta = row[0].ToString(), TelefonClient = row[1].ToString(), PassClient = row[2].ToString() };
 
                         // db.TablGoogles.Add(  new TablGoogle { NameClienta = row[0].ToString(), TelefonClient = row[2].ToString(), PassClient = row[1].ToString() });
                         db.TablGoogles.Add(tablGoogle1); // добавление в бд
+                       // db.SaveChanges();
                     }
 
                     catch (Exception ex)
