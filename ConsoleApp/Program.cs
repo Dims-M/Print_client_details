@@ -56,7 +56,11 @@ namespace ConsoleApp
             // Console.WriteLine($"После добавление новой строки в ручную {GetCountTablGoogle()}"); ; // получение количество сток из БД
             // DeleteClientTablGoogle(1204); // удаление по ID
             // Console.WriteLine($"После Удаление по ID строки в ручную {GetCountTablGoogle()}");
+            
+            //Поиск по имени
+            // SeachNameClient("ООО Алар");//Поиск по имени ПОКА НЕ РАБОТАЕТ Ы
 
+            GetClient(); //Вывод из бд
 
             Console.ReadKey();
         }
@@ -410,6 +414,12 @@ namespace ConsoleApp
             return rezultat;
         }
 
+        /// <summary>
+        /// Добавление новой строки в таблицу
+        /// </summary>
+        /// <param name="nameClient"></param>
+        /// <param name="passClient"></param>
+        /// <param name="telefonClient"></param>
         public static void AddClientTablGoogle(string nameClient, string passClient,string telefonClient )
         {
             //Обект для доавления в БД
@@ -431,6 +441,10 @@ namespace ConsoleApp
             }
         }
 
+        /// <summary>
+        /// Удаление нужной строки по id 
+        /// </summary>
+        /// <param name="idClienta"></param>
         public static void DeleteClientTablGoogle(int idClienta)
         {
             string tempLog = $"Удаленна строка под ID {idClienta}";
@@ -449,6 +463,80 @@ namespace ConsoleApp
                 db.TablGoogles.Remove(adduserTable2);// удаление нужной строки
 
                 db.SaveChanges(); // сохранение изменения в БД
+            }
+        }
+
+        /// <summary>
+        /// Поиск по точному значению
+        /// </summary>
+        /// <param name="nameClient"></param>
+        public static void SeachNameClient(string nameClient)
+        {
+            string tempLog = $"Поиск в таблице по имени клиента {nameClient} ";
+            List<TablGoogle> lisTtablGoogles = new List<TablGoogle>(); // лист для хранения найденных элементов
+            TablGoogle tablGoogle = new TablGoogle();
+
+            #region Поиск по "строгой" строке.
+            //using (var db = new TablGoogleContext()) // контекст для связи с бд
+            //{
+            //     db.TablGoogles.Load(); // загрузка базы в локальный кэш
+
+            //    foreach (var tenCount in db.TablGoogles)
+            //    {
+            //        if(tenCount.NameClienta  == nameClient)
+            //        {
+            //            lisTtablGoogles.Add(tenCount);
+            //           // Console.WriteLine(tenCount.NameClienta);
+            //        }
+            //    }
+
+            //    foreach (var listTemp in lisTtablGoogles)
+            //    {
+            //        Console.WriteLine(listTemp.NameClienta);
+            //    }
+            //}
+
+            #endregion
+
+            using (var db2 = new TablGoogleContext())
+            {
+                db2.TablGoogles.Load();
+                var name = db2.TablGoogles.Select(c=>c.NameClienta).FirstOrDefault();  // Вывод первого значения с строке
+               IQueryable<string> nameSeach = db2.TablGoogles.Select(c=> c.NameClienta).Where(c=>c.Contains(nameClient));
+                var temp = (from t in db2.TablGoogles where t.NameClienta.ToUpper().StartsWith(nameClient) select t).ToString();
+                //var seahs = db2.TablGoogles.Where(t => t.NameClienta.ToUpper("А").OrderBy());
+
+                Console.WriteLine($"Поиск 1{name}");
+                Console.WriteLine($"Поиск 2---{nameSeach}");
+                Console.WriteLine($"Поиск 3---{temp}");
+
+                foreach (var ss in temp)
+                {
+                   // Console.WriteLine(ss);
+                }
+            }
+            Console.WriteLine("Поиск завершен...Нажмите любую кнопку");
+            Console.ReadKey();
+        }
+
+        /// <summary>
+        /// Вывод всех данных из БД + поиск по слову
+        /// </summary>
+        public static void GetClient()
+        {
+            using (TablGoogleContext tablGoogle = new TablGoogleContext())
+            {
+                string temp = "Алар";
+                string tempResult = "";
+                foreach (TablGoogle googleTable in tablGoogle.TablGoogles)
+                {
+                    if (googleTable.NameClienta.Contains(temp))
+                    {
+                        tempResult += googleTable.NameClienta+"\t\n";
+                    }
+                    //Console.WriteLine(tempResult);
+                }
+                Console.WriteLine(tempResult);
             }
         }
 
