@@ -6,6 +6,7 @@ using Google.Apis.Sheets.v4.Data;
 using Google.Apis.Util.Store;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.OleDb;
 using System.Data.SQLite;
 using System.Diagnostics;
@@ -48,8 +49,16 @@ namespace ConsoleApp
         //static string ApplicationName = "Тимы клиентов"; // имя аодключения
         static void Main(string[] args)
         {
-            test2(); // Загрузка  из гугл таблиц и добавления их в БД
-            
+            // test2(); // Загрузка  из гугл таблиц и добавления их в БД
+            // LinoConneckt();  //Тестовой метод получения данных
+            // Console.WriteLine( GetCountTablGoogle()); // получение количество сток из БД
+            //  AddClientTablGoogle("Тестовая строка","51215658", "****");
+            // Console.WriteLine($"После добавление новой строки в ручную {GetCountTablGoogle()}"); ; // получение количество сток из БД
+            // DeleteClientTablGoogle(1204); // удаление по ID
+            // Console.WriteLine($"После Удаление по ID строки в ручную {GetCountTablGoogle()}");
+
+
+            Console.ReadKey();
         }
 
         /// <summary>
@@ -351,9 +360,96 @@ namespace ConsoleApp
         /// </summary>
         public static void LinoConneckt()
         {
+            //https://www.youtube.com/watch?v=3yb4idCg-Qs&t=6859s
             //https://www.youtube.com/watch?v=ySDvruLcn2I&t=1076s
 
+            using (var context = new TablGoogleContext()) // экземлряр контекства для связи с бд
+            {
+                var table = new TablGoogle();  
+                context.TablGoogles.Load(); //Загрузка данных из БД
 
+                var temp = context.TablGoogles.Local.ToBindingList(); //выгружаем в локальный кеш данне из бд
+
+                int tempCant = temp.Count;  //количество элементов
+                string tempZnach = "";
+
+                foreach (var tt in temp.Reverse()) // Выводим с помощью реверса. Сначало последние
+                {
+                    table.Id = tt.Id;
+                    table.NameClienta = tt.NameClienta;
+
+                    //if (table.Id <= 20)
+                    //{
+                        tempZnach += $"ID{table.Id},\t\n ИМЯ {table.NameClienta} \t\n ";
+                   // }
+                    
+                }
+
+                //string temp1 = temp.
+                
+                    Console.WriteLine($"Общие количество записей {tempCant}");
+                    Console.WriteLine(tempZnach);
+                // this.DataContext = db.Phones.Local.ToBindingList();
+            }
+            Console.ReadKey();
+        }
+        /// <summary>
+        /// Получение общего количества строк в таблице
+        /// </summary>
+        /// <returns></returns>
+        public static int GetCountTablGoogle()
+        {
+            int rezultat;
+
+            using (var db = new TablGoogleContext())
+            {
+                db.TablGoogles.Load(); //Загрузка данных из БД
+
+                rezultat = db.TablGoogles.Local.ToBindingList().Count(); //выгружаем в локальный кеш данне из бд
+            }
+            return rezultat;
+        }
+
+        public static void AddClientTablGoogle(string nameClient, string passClient,string telefonClient )
+        {
+            //Обект для доавления в БД
+            TablGoogle adduserTable = new TablGoogle()
+            {
+                NameClienta = nameClient,
+                PassClient = passClient,
+                TelefonClient = telefonClient,
+                DataTimeAddTable = DateTime.Now.ToString()
+            };
+
+            using (var db = new TablGoogleContext())// конткст для работы с базой данной
+            {
+                db.TablGoogles.Load(); // загрузка текущего стостояния бд в локальный кэш
+
+                db.TablGoogles.Add(adduserTable); // добавление новой строки
+
+                db.SaveChanges(); // сохранение изменения в БД
+            }
+        }
+
+        public static void DeleteClientTablGoogle(int idClienta)
+        {
+            string tempLog = $"Удаленна строка под ID {idClienta}";
+
+            //Обект для доавления в БД
+            TablGoogle adduserTable = new TablGoogle();
+             
+            using (var db = new TablGoogleContext())// конткст для работы с базой данной
+            {
+                TablGoogle adduserTable2 = new TablGoogle();
+
+                db.TablGoogles.Load(); // загрузка текущего стостояния бд в локальный кэш
+
+                adduserTable2 = db.TablGoogles.Find(idClienta);
+
+                db.TablGoogles.Remove(adduserTable2);// удаление нужной строки
+
+                db.SaveChanges(); // сохранение изменения в БД
+            }
         }
 
     }
