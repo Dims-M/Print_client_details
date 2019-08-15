@@ -49,18 +49,9 @@ namespace ConsoleApp
         static void Main(string[] args)
         {
             test2(); // Загрузка  из гугл таблиц и добавления их в БД
-            //connektDB();
-
-            // ConnektEnityDBAddClass(); //работа с тестовой базой; //Добавление в БД
-            //
-            //AddDataUser(); //Чтение из БД
-            // ConnektGoogleTabl(); // работа с Таблицами гугла
-            // AddDataTableGoogle(); //Получение данных из БД
-            // SaveExelTable(); //Запись в ексел Пока не работает
+            
         }
 
-       
-      
         /// <summary>
         /// Добавление в БД гугле таблиц НЕ использовать
         /// </summary>
@@ -145,32 +136,7 @@ namespace ConsoleApp
             Console.ReadKey();
         }
 
-        /// <summary>
-        /// Полученние данных из БД
-        /// </summary>
-        public static void AddDataUser()
-        {
-
-            //using (UserContext db = new UserContext())
-            //{
-            //    Console.WriteLine("Получение данных из БД");
-
-
-            //    var temDb = db.Users; // получаем данные из Базы жанных
-            //    log += $"Получаем данные из Базы данных!!!\t\n Количество элементов в БД {temDb.Count()}\t\n";
-
-            //    foreach (User user in temDb)
-            //    {
-            //        string tempUsr = $"ID{user.Id} ИМЯ:{user.Name} Возраст:{user.Age} \t\n";
-            //        Console.WriteLine(tempUsr);
-            //        SaveFileText(tempUsr, "logWriterBD.txt");
-            //    }
-
-            //}
-            //Console.WriteLine(log);
-            //Console.ReadKey();
-        }
-
+   
         /// <summary>
         /// Запись текста в файл
         /// </summary>
@@ -185,7 +151,7 @@ namespace ConsoleApp
                 using (StreamWriter sw = new StreamWriter(patchText, true, System.Text.Encoding.Default))
                 {
                     // sw.WriteLine("Дозапись");
-                    sw.Write(text); // запись
+                    sw.Write(text+"\t\n"); // запись
                 }
             }
             catch (Exception ex)
@@ -285,7 +251,7 @@ namespace ConsoleApp
         }
 
         /// <summary>
-        /// Скачиваем данные из таблицы гугл. Тимы и пароли
+        /// Скачиваем данные из таблицы гугл. Тимы и пароли и запысываем в sqllite
         /// </summary>
         public static void test2()
         {
@@ -380,7 +346,15 @@ namespace ConsoleApp
             Console.Read();
         }
 
+        /// <summary>
+        /// Тестовой метод для работы с запросами Linq
+        /// </summary>
+        public static void LinoConneckt()
+        {
+            //https://www.youtube.com/watch?v=ySDvruLcn2I&t=1076s
 
+
+        }
 
     }
 
