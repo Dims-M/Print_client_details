@@ -15,7 +15,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 //using Excel = Microsoft.Office.Interop.Excel;
-using CodeFirst;
+//using CodeFirst;
 
 namespace ConsoleApp
 {
@@ -23,7 +23,7 @@ namespace ConsoleApp
     {
       static  public Phone Phone { get; private set; }
        static string log = "Журнал событий: \t\n";
-       
+
         //Команда Update-Package
 
         //Источник
@@ -32,6 +32,14 @@ namespace ConsoleApp
 
         //http://qaru.site/questions/14594846/checking-for-empty-cells-in-google-sheets-using-c-via-google-sheets-api-v4/23537991
         // Примеры добавления в бд
+
+        //  Пример как настроить Entity Framework + SQLite
+        //https://ru.stackoverflow.com/questions/596782/entity-framework-sqlite
+
+        //Работа с БД удаление очистка sqllite
+       // DELETE FROM TablGoogles;
+        //SELECT* FROM TablGoogles;
+        //https://zametkinapolyah.ru/zametki-o-mysql/chast-10-5-udalenie-dannyx-i-strok-iz-tablicy-bazy-dannyx-sqlite.html
 
         // При изменении этих областей удалите ранее сохраненные учетные данные
         // at ~/.credentials/sheets.googleapis.com-dotnet-quickstart.json
@@ -51,140 +59,10 @@ namespace ConsoleApp
             // SaveExelTable(); //Запись в ексел Пока не работает
         }
 
-        //НЕРАБОТАЕТ
-        public static void connektBD()
-        {
-
-            // using (var db = new SQLiteConnection("mobiles.db", true))
-            using (var context = new ApplicationContext())
-            {
-                try
-                {
-
-                    Console.WriteLine("Соединение с БД");
-                    Console.ReadKey();
-
-                    context.Phones.Add(new Phone() { NameLogin = "aaa111", Company = "bbb111", NamePass = 777, DateTimeAdd = 17111 });
-                    // context.Phones.Add(new Person() { Name = "aaa222", Surname = "bbb222" });
-                    ///  context.Phones.Add(new Person() { Name = "aaa333", Surname = "bbb333" });
-
-                    // SQLiteCommand command = new SQLiteCommand("SELECT * FROM 'Phones';");
-
-                    // SQLiteDataReader people = command.ExecuteReader();
-
-                    // while (people.Read())
-                    //{
-                    //    object getname = people[0];
-                    //    Console.WriteLine(getname);
-                    //}
-
-
-                }
-
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Соединение с БД" + ex);
-                    Console.ReadKey();
-                }
-                //  db.Close();
-            }
-
-            Console.WriteLine("Конец метода Соединение с БД");
-            Console.ReadKey();
-        }
-
+       
+      
         /// <summary>
-        /// тестовой метод присоединение к БД
-        /// </summary>
-        public static void connektDB()
-        {
-            //const string databaseName = @"mobiles.db;
-            //SQLiteConnection connection =
-            //new SQLiteConnection(string.Format("Data Source={0};", databaseName));
-            //connection.Open();
-            //SQLiteCommand command = new SQLiteCommand("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name;", connection);
-            //SQLiteDataReader reader = command.ExecuteReader();
-            //foreach (DbDataRecord record in reader)
-            //    Console.WriteLine("Таблица: " + record["name"]);
-            //connection.Close();
-            //Console.WriteLine("Готово");
-            //Console.ReadKey(true);
-            //string db = "mobiles.db";
-
-            //string connectBD = "testDB.db";
-
-            //try
-            //{
-            //    connectionBDTEst = new SQLiteConnection("Data Sourse=testDB.bd; Version=3");
-            //    connectionBDTEst.Open();
-
-            //    Console.ReadKey();
-            //}
-            //catch(Exception ex)
-            //{
-            //    log += "Ошибка при подключению к БД testDB.bd \t\n";
-            //    log += ex.ToString();
-            //    Console.WriteLine(log);
-            //}
-
-
-            Console.ReadKey();
-
-
-
-        }
-
-        /// <summary>
-        /// Добавление в данных в БД таблица 
-        /// </summary>
-        public static void ConnektEnityDBAddClass()
-        {
-            //using (UserContext db = new UserContext())
-            //{
-            //    // создаем два объекта User
-            //    User user1 = new User { Name = "Первонах", Age = 30 };
-            //    User user2 = new User { Name = "Второнах", Age = 25 };
-
-            //    // добавляем их в бд
-            //    db.Users.Add(user1);
-            //    db.Users.Add(user2);
-            //    db.SaveChanges(); // сохранение действий с БД
-
-            //    log += "Записанный в БД текущие обьекты: \t\n user1 и user2 \t\n";
-
-            //    Console.WriteLine("Что то записалось в БД");
-            //}
-            //Console.WriteLine(log);
-            //Console.ReadKey();   
-        }
-
-        /// <summary>
-        /// Добавление в БАЗУ данных Тестовой БД
-        /// </summary>
-        public static void ConnektEnityGoogleTabl()
-        {
-            //    using (UserContext db = new UserContext())
-            //    {
-            //        создаем два объекта User
-            //        User user1 = new User { Name = "Первонах", Age = 30 };
-            //        User user2 = new User { Name = "Второнах", Age = 25 };
-
-            //        добавляем их в бд
-            //        db.Users.Add(user1);
-            //        db.Users.Add(user2);
-            //        db.SaveChanges(); // сохранение действий с БД
-
-            //        log += "Записанный в БД текущие обьекты: \t\n user1 и user2 \t\n";
-
-            //        Console.WriteLine("Что то записалось в БД");
-            //    }
-
-            //    Console.WriteLine(log);
-            //    Console.ReadKey();
-        }
-
-        /// <summary>
-        /// Добавление в БД гугле таблиц
+        /// Добавление в БД гугле таблиц НЕ использовать
         /// </summary>
         public static void ConnektGoogleTabl()
         {
@@ -212,6 +90,7 @@ namespace ConsoleApp
         }
 
 
+        //НЕ использовать
         public static void AddTableToSqllite(TablGoogle tablGoogle)
         {
             using (TablGoogleContext db = new TablGoogleContext())
@@ -315,11 +194,12 @@ namespace ConsoleApp
             }
 
         }
+       
+        
+        
         /// <summary>
-        /// Запись в таблицу ексель
+        /// Запись в таблицу ексель Пока не работает
         /// </summary>
-
-
         public static void SaveExelTable()
         {
             // https://www.codeproject.com/Tips/705470/Read-and-Write-Excel-Documents-Using-OLEDB
@@ -372,6 +252,10 @@ namespace ConsoleApp
             Console.ReadKey();
         }
 
+        /// <summary>
+        /// Строка подключения к ексель странице
+        /// </summary>
+        /// <returns></returns>
         private static string GetConnectionString()
         {
             Dictionary<string, string> props = new Dictionary<string, string>();
@@ -473,11 +357,9 @@ namespace ConsoleApp
                         SaveFileText(temph);
 
                         TablGoogle tablGoogle1 = new TablGoogle { NameClienta = row[0].ToString(), TelefonClient = row[1].ToString(), PassClient = row[2].ToString(), DataTimeAddTable=(DateTime.Now.ToString()) };
-                       // TablGoogle tablGoogle1 = new TablGoogle { NameClienta = row[0].ToString(), TelefonClient = row[1].ToString(), PassClient = row[2].ToString() };
-
-                        // db.TablGoogles.Add(  new TablGoogle { NameClienta = row[0].ToString(), TelefonClient = row[2].ToString(), PassClient = row[1].ToString() });
+                        
                         db.TablGoogles.Add(tablGoogle1); // добавление в бд
-                       // db.SaveChanges();
+                      //  db.SaveChanges(); // выходят ошибки
                     }
 
                     catch (Exception ex)
@@ -485,33 +367,20 @@ namespace ConsoleApp
                         Console.WriteLine(ex);
                     }
                 }
-                watch.Stop();
-                Console.WriteLine($"Завершино Всего в списке {variableStirnTable} строк!");
+                //watch.Stop();
+                Console.WriteLine($"Завершино Всего в списке {variableStirnTable} строк! \t\nИдет добавление данных в БД \t\n Ожидайте....");
                 db.SaveChanges(); // сохранение действий с БД
-                Console.Read();
+                Console.WriteLine("Завершено!! Нажмите любую кнопку");
+                watch.Stop();
+               // Console.Read();
             }
 
             Console.WriteLine($"Завершино Всего в списке {variableStirnTable} строк!/t/n Полученно перебором{countStirnTable}\t\n Время получения списка пользователей и добавения данных {watch.ElapsedMilliseconds} милисекунд или {watch.Elapsed.Seconds}секунд \t\n");
             Console.Read();
-
+            Console.Read();
         }
 
 
-        public void zapuskBL()
-        {
-            // В этой точке непосредственно начинается работа с Entity Framework
-
-            // Создать объект контекста
-            SampleContext context = new SampleContext();
-
-            Customer customer = new Customer { Age = 100, Email = "sd@mil.ru", Name = "Первонах" };
-
-            // Вставить данные в таблицу Customers с помощью LINQ
-            context.Customers.Add(customer);
-
-            // Сохранить изменения в БД
-            context.SaveChanges();
-        }
 
     }
 

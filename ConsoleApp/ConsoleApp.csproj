@@ -140,20 +140,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\SQLite_Solution\SQLiteApp\SQLiteApp.csproj">
-      <Project>{7C1D57C5-9A31-4249-995F-EF800F7D1170}</Project>
-      <Name>SQLiteApp</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CodeFirst\CodeFirst.csproj">
-      <Project>{a494b25b-488a-47f6-8d89-3d51d98fa57c}</Project>
-      <Name>CodeFirst</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SQLiteSampleWF\SQLiteSampleWF.csproj">
-      <Project>{d9e45aba-e1b0-4c06-b8e1-e534504d11c4}</Project>
-      <Name>SQLiteSampleWF</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
       <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
       <VersionMajor>2</VersionMajor>
