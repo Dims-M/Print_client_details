@@ -25,6 +25,8 @@ namespace ConsoleApp
       static  public Phone Phone { get; private set; }
        static string log = "Журнал событий: \t\n";
 
+        static List<string> TestListGetBDTable = new List<string>();
+
         //Команда Update-Package
 
         //Источник
@@ -526,19 +528,31 @@ namespace ConsoleApp
         {
             using (TablGoogleContext tablGoogle = new TablGoogleContext())
             {
-                string temp = "Алар";
+                string temp = "ООО"; // переменная хранит  искомая имя
                 string tempResult = "";
                 foreach (TablGoogle googleTable in tablGoogle.TablGoogles)
                 {
                     if (googleTable.NameClienta.Contains(temp))
                     {
                         tempResult += googleTable.NameClienta+"\t\n";
+                        TestListGetBDTable.Add(tempResult);
                     }
                     //Console.WriteLine(tempResult);
                 }
                 Console.WriteLine(tempResult);
             }
         }
+
+        /// <summary>
+        /// Тестовой метод работы с линг от codeBlog
+        /// </summary>
+        public static void RabotaLinfCodeBlok()
+        {
+           
+
+
+        }
+
 
     }
 
