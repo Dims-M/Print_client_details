@@ -536,10 +536,12 @@ namespace ConsoleApp
                     {
                         tempResult += googleTable.NameClienta+"\t\n";
                         TestListGetBDTable.Add(tempResult);
+
                     }
                     //Console.WriteLine(tempResult);
                 }
                 Console.WriteLine(tempResult);
+                Console.WriteLine($"Количество найденых клиентов:{TestListGetBDTable.Count}");
             }
         }
 
