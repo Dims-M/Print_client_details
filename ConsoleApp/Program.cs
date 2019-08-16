@@ -40,9 +40,13 @@ namespace ConsoleApp
         //https://ru.stackoverflow.com/questions/596782/entity-framework-sqlite
 
         //Работа с БД удаление очистка sqllite
-       // DELETE FROM TablGoogles;
+        // DELETE FROM TablGoogles;
         //SELECT* FROM TablGoogles;
         //https://zametkinapolyah.ru/zametki-o-mysql/chast-10-5-udalenie-dannyx-i-strok-iz-tablicy-bazy-dannyx-sqlite.html
+
+        //Программа для работы в трее
+        //https://www.youtube.com/watch?v=ehnKtL9mCdg
+
 
         // При изменении этих областей удалите ранее сохраненные учетные данные
         // at ~/.credentials/sheets.googleapis.com-dotnet-quickstart.json
