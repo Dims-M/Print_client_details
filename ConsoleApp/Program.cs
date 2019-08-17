@@ -26,6 +26,7 @@ namespace ConsoleApp
        static string log = "Журнал событий: \t\n";
 
         static List<string> TestListGetBDTable = new List<string>();
+        static List<int> TestListGetBDTableIDCllient = new List<int>();
 
         //Команда Update-Package
 
@@ -67,6 +68,10 @@ namespace ConsoleApp
             // SeachNameClient("ООО Алар");//Поиск по имени ПОКА НЕ РАБОТАЕТ Ы
 
             GetClient(); //Вывод из бд
+
+            //запосы лино
+            //https://www.youtube.com/watch?v=ySDvruLcn2I&t=1555s
+            RabotaLinfCodeBlok();
 
             Console.ReadKey();
         }
@@ -534,12 +539,16 @@ namespace ConsoleApp
             {
                 string temp = "ООО"; // переменная хранит  искомая имя
                 string tempResult = "";
+                int tempResultOD ;
                 foreach (TablGoogle googleTable in tablGoogle.TablGoogles)
                 {
                     if (googleTable.NameClienta.Contains(temp))
                     {
-                        tempResult += googleTable.NameClienta+"\t\n";
+                        tempResult += $"{googleTable.Id} {googleTable.NameClienta}  \t\n";
+                        tempResultOD = googleTable.Id;
                         TestListGetBDTable.Add(tempResult);
+                        TestListGetBDTableIDCllient.Add(tempResultOD);
+
 
                     }
                     //Console.WriteLine(tempResult);
@@ -554,9 +563,22 @@ namespace ConsoleApp
         /// </summary>
         public static void RabotaLinfCodeBlok()
         {
-           
 
+            var resultGetLinq = from item in TestListGetBDTableIDCllient // указываем откудв азять и куда положить
+                                where item <100  // условие быборки
+                                select item ; // фыбираем и фиксируем нужнве изменнения 
+            Console.WriteLine("Вывод списка клиентов");
+            //линк запрос с помощь. метода разширений и лямба методов
+            var result2 = TestListGetBDTableIDCllient.Where(item => item > 1000 & item < 1050);
 
+            foreach (var temp in result2)
+            {
+                Console.WriteLine(temp);
+            }
+
+          //  var result2 = TestListGetBDTableIDCllient.Where(item => item > 1000 & item < 1010);
+            Console.WriteLine("Для завершения нажмите любую клавишу");
+            Console.ReadKey();
         }
 
 
