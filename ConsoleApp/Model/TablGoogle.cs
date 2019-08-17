@@ -25,5 +25,15 @@ namespace ConsoleApp.Model
         /// </summary>
         public string DataTimeAddTable{ get; set; } // добавление даты
 
+
+        /// <summary>
+        /// Переопределенный метод. для вывода информации о таблице
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+
+            return $"Номер: {Id}, Имя клиента: {NameClienta}, Пароль {PassClient},Телефон {TelefonClient}, Дата добавления в список:{DataTimeAddTable}";
+        }
     }
 }

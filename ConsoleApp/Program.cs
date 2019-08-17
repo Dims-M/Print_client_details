@@ -27,6 +27,7 @@ namespace ConsoleApp
 
         static List<string> TestListGetBDTable = new List<string>();
         static List<int> TestListGetBDTableIDCllient = new List<int>();
+        static List<TablGoogle> TestListTablGoogle = new List<TablGoogle>();
 
         //Команда Update-Package
 
@@ -446,6 +447,10 @@ namespace ConsoleApp
             {
                 db.TablGoogles.Load(); // загрузка текущего стостояния бд в локальный кэш
 
+               // var resulIF = db.TablGoogles.Where(item => item.NameClienta != adduserTable.NameClienta); // 
+
+
+
                 db.TablGoogles.Add(adduserTable); // добавление новой строки
 
                 db.SaveChanges(); // сохранение изменения в БД
@@ -548,6 +553,7 @@ namespace ConsoleApp
                         tempResultOD = googleTable.Id;
                         TestListGetBDTable.Add(tempResult);
                         TestListGetBDTableIDCllient.Add(tempResultOD);
+                        TestListTablGoogle.Add(googleTable);
 
 
                     }
@@ -571,13 +577,25 @@ namespace ConsoleApp
             //линк запрос с помощь. метода разширений и лямба методов
             var result2 = TestListGetBDTableIDCllient.Where(item => item > 1000 & item < 1050);
 
-            foreach (var temp in result2)
+            //  var result2 = TestListGetBDTableIDCllient.Where(item => item > 1000 & item < 1010);
+
+            var result3 = TestListTablGoogle.Where(item => item.TelefonClient == "9033149356");
+
+            foreach (var temp in result3)
             {
                 Console.WriteLine(temp);
             }
 
-          //  var result2 = TestListGetBDTableIDCllient.Where(item => item > 1000 & item < 1010);
             Console.WriteLine("Для завершения нажмите любую клавишу");
+            Console.WriteLine("Преоброзование одного типа в другой.");
+
+            //Преоброзование одного типа в дугойй
+            var selectColection = TestListTablGoogle.Select(nameCletnt => nameCletnt.NameClienta);
+
+            foreach (var temp in selectColection)
+            {
+                Console.WriteLine(temp);
+            }
             Console.ReadKey();
         }
 
