@@ -569,6 +569,7 @@ namespace ConsoleApp
         /// </summary>
         public static void RabotaLinfCodeBlok()
         {
+            //https://www.youtube.com/watch?v=ySDvruLcn2I&t=2922s
 
             var resultGetLinq = from item in TestListGetBDTableIDCllient // указываем откудв азять и куда положить
                                 where item <100  // условие быборки
@@ -590,9 +591,18 @@ namespace ConsoleApp
             Console.WriteLine("Преоброзование одного типа в другой.");
 
             //Преоброзование одного типа в дугойй
-            var selectColection = TestListTablGoogle.Select(nameCletnt => nameCletnt.NameClienta);
+            var selectColection = TestListTablGoogle.Select(nameCletnt => nameCletnt.NameClienta); //преоброзование
+            var selectColectionPass = TestListTablGoogle.Select(nameCletnt => nameCletnt.PassClient); //преоброзование
+            var selectColectionTelefon = TestListTablGoogle.Select(nameCletnt => nameCletnt.TelefonClient); //преоброзование
 
-            foreach (var temp in selectColection)
+            var orderCollectoins = TestListTablGoogle.OrderBy(nameGet => nameGet.NameClienta); // упорядование по имени
+         //   var orderCollectoins = TestListTablGoogle.OrderBy(nameGet => nameGet.NameClienta); // упорядование по имени
+            var orderCollectoinsPassClenta = TestListTablGoogle.OrderBy(nameGet => nameGet.TelefonClient).ThenBy(nameCleenta => nameCleenta.NameClienta); // упорядование по имени
+
+            
+
+            //Вывод колекции
+            foreach (var temp in orderCollectoinsPassClenta)
             {
                 Console.WriteLine(temp);
             }
