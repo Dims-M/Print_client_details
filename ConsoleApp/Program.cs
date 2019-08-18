@@ -599,13 +599,21 @@ namespace ConsoleApp
          //   var orderCollectoins = TestListTablGoogle.OrderBy(nameGet => nameGet.NameClienta); // упорядование по имени
             var orderCollectoinsPassClenta = TestListTablGoogle.OrderBy(nameGet => nameGet.TelefonClient).ThenBy(nameCleenta => nameCleenta.NameClienta); // упорядование по имени
 
-            
+            //обьединение в колекциях
+          //  var arreyUnion = selectColectionTelefon.Union(selectColectionPass);
+
+            // убираем повторение в колекциях 
+
 
             //Вывод колекции
-            foreach (var temp in orderCollectoinsPassClenta)
+            foreach (var temp in selectColectionTelefon)
             {
                 Console.WriteLine(temp);
             }
+            Console.WriteLine($"Количество значений{selectColectionTelefon.Count()}\t\nПосле******************");
+
+            
+
             Console.ReadKey();
         }
 
