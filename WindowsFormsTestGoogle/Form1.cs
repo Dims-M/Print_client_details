@@ -114,6 +114,7 @@ namespace WindowsFormsTestGoogle
             dataGridView1.Refresh(); // обновляем грид
             PlayerForm plForm = new PlayerForm(); // Создание новой формы
             DialogResult result = plForm.ShowDialog(this); // включение диалога
+            string arenda = "79520302311 Арендный телефон";
 
             if (result == DialogResult.Cancel) // если нажата кнопка отмены, то выход из формы
                 return;
@@ -128,14 +129,14 @@ namespace WindowsFormsTestGoogle
 
                 if (plForm.checkBoxArenda.Checked)
                 {
-                    tablGoogle.TelefonClient += " +79520302311 Арендный телефон";
+                    tablGoogle.TelefonClient += $"/t/n 79520302311 Арендный телефон";
                     tablGoogle.PassClient += "1234qwer или 1234Qwer ";
 
                 }
                 if (plForm.checkBoxArendaEvolaina.Checked)
                 {
-                    tablGoogle.TelefonClient += " +79520302311 Арендный телефон";
-                    tablGoogle.PassClient += "1234qwer или 1234Qwer ";
+                    tablGoogle.TelefonClient += $"\n{arenda}";
+                    tablGoogle.PassClient += "\n1234qwer или 1234Qwer ";
 
                 }
 
