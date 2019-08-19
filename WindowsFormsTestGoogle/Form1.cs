@@ -126,6 +126,20 @@ namespace WindowsFormsTestGoogle
                 tablGoogle.TelefonClient = plForm.textBoxTelefonClienta.Text;
                 tablGoogle.DataTimeAddTable = DateTime.Now.ToString(); // время создания
 
+                if (plForm.checkBoxArenda.Checked)
+                {
+                    tablGoogle.TelefonClient += " +79520302311 Арендный телефон";
+                    tablGoogle.PassClient += "1234qwer или 1234Qwer ";
+
+                }
+                if (plForm.checkBoxArendaEvolaina.Checked)
+                {
+                    tablGoogle.TelefonClient += " +79520302311 Арендный телефон";
+                    tablGoogle.PassClient += "1234qwer или 1234Qwer ";
+
+                }
+
+
                 db2.TablGoogles.Add(tablGoogle); // добавляем в БД новые данные
                 db2.SaveChanges();
             }

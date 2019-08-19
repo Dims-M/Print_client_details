@@ -202,13 +202,13 @@
         private System.Windows.Forms.Label labelTelefonClienta;
         private System.Windows.Forms.Label labelPassClienta;
         private System.Windows.Forms.Label labelAddName;
-        private System.Windows.Forms.CheckBox checkBoxArendaEvolaina;
-        private System.Windows.Forms.CheckBox checkBoxArenda;
         public System.Windows.Forms.TextBox textBoxNameClient;
         public System.Windows.Forms.TextBox textBoxPassClient;
         public System.Windows.Forms.TextBox textBoxTelefonClienta;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.TextBox textBoxDatetime;
         public System.Windows.Forms.Label labelDateTime;
+        public System.Windows.Forms.CheckBox checkBoxArendaEvolaina;
+        public System.Windows.Forms.CheckBox checkBoxArenda;
     }
 }
