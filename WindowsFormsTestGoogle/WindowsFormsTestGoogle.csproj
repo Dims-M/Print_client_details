@@ -115,6 +115,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\ConsoleApp.Model.TablGoogle.datasource" />
+    <None Include="Properties\DataSources\ConsoleApp.Model.User.datasource" />
+    <None Include="Properties\DataSources\ConsoleApp.Phone.datasource" />
+    <None Include="Properties\DataSources\ConsoleApp.TablGoogleContext.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

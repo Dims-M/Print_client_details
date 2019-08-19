@@ -377,7 +377,7 @@ namespace WindowsFormsTestGoogle
         /// <summary>
         /// Вывод всех данных из БД + поиск по слову
         /// </summary>
-        public static void GetClient()
+        public static List<string> GetClient()
         {
             using (TablGoogleContext tablGoogle = new TablGoogleContext())
             {
@@ -398,8 +398,9 @@ namespace WindowsFormsTestGoogle
                     }
                     //Console.WriteLine(tempResult);
                 }
-                Console.WriteLine(tempResult);
-                Console.WriteLine($"Количество найденых клиентов:{TestListGetBDTable.Count}");
+                return TestListGetBDTable;// List<string>;
+              //  Console.WriteLine(tempResult);
+              // Console.WriteLine($"Количество найденых клиентов:{TestListGetBDTable.Count}");
             }
         }
 
