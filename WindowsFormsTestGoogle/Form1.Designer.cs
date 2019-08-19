@@ -42,15 +42,17 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.tablGoogleBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tablGoogleContextBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameClientaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.passClientDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.telefonClientDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataTimeAddTableDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tablGoogleBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tablGoogleContextBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.button7 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -62,6 +64,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button7);
+            this.panel1.Controls.Add(this.button6);
             this.panel1.Controls.Add(this.button5);
             this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.button3);
@@ -179,7 +183,6 @@
             this.dataGridView1.DataSource = this.tablGoogleBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(6, 6);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -207,26 +210,25 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.Button4_Click);
             // 
-            // tablGoogleBindingSource
-            // 
-            this.tablGoogleBindingSource.DataSource = typeof(ConsoleApp.Model.TablGoogle);
-            // 
-            // userBindingSource
-            // 
-            this.userBindingSource.DataSource = typeof(ConsoleApp.Model.User);
-            // 
-            // tablGoogleContextBindingSource
-            // 
-            this.tablGoogleContextBindingSource.DataSource = typeof(ConsoleApp.TablGoogleContext);
-            // 
             // button5
             // 
             this.button5.Location = new System.Drawing.Point(223, 348);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(184, 37);
             this.button5.TabIndex = 9;
-            this.button5.Text = "Добавть клиента";
+            this.button5.Text = "Добавить клиента";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.Button5_Click);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(436, 348);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(184, 37);
+            this.button6.TabIndex = 10;
+            this.button6.Text = "Изменить клиента";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.Button6_Click);
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -273,6 +275,28 @@
             this.dataTimeAddTableDataGridViewTextBoxColumn.ReadOnly = true;
             this.dataTimeAddTableDataGridViewTextBoxColumn.Width = 125;
             // 
+            // tablGoogleBindingSource
+            // 
+            this.tablGoogleBindingSource.DataSource = typeof(ConsoleApp.Model.TablGoogle);
+            // 
+            // userBindingSource
+            // 
+            this.userBindingSource.DataSource = typeof(ConsoleApp.Model.User);
+            // 
+            // tablGoogleContextBindingSource
+            // 
+            this.tablGoogleContextBindingSource.DataSource = typeof(ConsoleApp.TablGoogleContext);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(650, 348);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(184, 37);
+            this.button7.TabIndex = 11;
+            this.button7.Text = "Удалить клиента ";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.Button7_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -318,6 +342,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn passClientDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn telefonClientDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataTimeAddTableDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button7;
     }
 }
 
