@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp
 {
-    class TablGoogleContext : DbContext
+   public class TablGoogleContext : DbContext
     {
 
         public TablGoogleContext()

@@ -1,4 +1,4 @@
-﻿using ConsoleApp.Model;
+﻿
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Services;
 using Google.Apis.Sheets.v4;
@@ -8,26 +8,28 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.OleDb;
-using System.Data.SQLite;
+//using System.Data.SQLite;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-//using Excel = Microsoft.Office.Interop.Excel;
-//using CodeFirst;
+using ConsoleApp.Model; // 
+using ConsoleApp;
 
-namespace ConsoleApp
+namespace WindowsFormsTestGoogle
 {
-    class Program
+   public class BL
     {
-        static  public Phone Phone { get; private set; }
+
+        //ПЕРЕМЕННЫЕ
+       // static public Phone Phone { get; private set; } //На удаление
         static string log = "Журнал событий: \t\n";
 
         static List<string> TestListGetBDTable = new List<string>();
         static List<int> TestListGetBDTableIDCllient = new List<int>();
-        static List<TablGoogle> TestListTablGoogle = new List<TablGoogle>();
+        static List<TablGoogle> TestListTablGoogle = new List<TablGoogle>(); // Лист для хранения обьектов класса
 
         //Команда Update-Package
 
@@ -49,91 +51,14 @@ namespace ConsoleApp
         //Программа для работы в трее
         //https://www.youtube.com/watch?v=ehnKtL9mCdg
 
+        //запросы лино
+        //https://www.youtube.com/watch?v=ySDvruLcn2I&t=1555s
 
         // При изменении этих областей удалите ранее сохраненные учетные данные
         // at ~/.credentials/sheets.googleapis.com-dotnet-quickstart.json
         static string[] Scopes = { SheetsService.Scope.SpreadsheetsReadonly };
         static string ApplicationName = "Google Sheets API .NET Quickstart";
         //static string ApplicationName = "Тимы клиентов"; // имя аодключения
-        static void Main(string[] args)
-        {
-            // test2(); // Загрузка  из гугл таблиц и добавления их в БД
-            // LinoConneckt();  //Тестовой метод получения данных
-            // Console.WriteLine( GetCountTablGoogle()); // получение количество сток из БД
-            //  AddClientTablGoogle("Тестовая строка","51215658", "****");
-            // Console.WriteLine($"После добавление новой строки в ручную {GetCountTablGoogle()}"); ; // получение количество сток из БД
-            // DeleteClientTablGoogle(1204); // удаление по ID
-            // Console.WriteLine($"После Удаление по ID строки в ручную {GetCountTablGoogle()}");
-            
-            //Поиск по имени
-            // SeachNameClient("ООО Алар");//Поиск по имени ПОКА НЕ РАБОТАЕТ Ы
-
-            GetClient(); //Вывод из бд
-
-            //запосы лино
-            //https://www.youtube.com/watch?v=ySDvruLcn2I&t=1555s
-            RabotaLinfCodeBlok();
-
-            Console.ReadKey();
-        }
-
-        /// <summary>
-        /// Добавление в БД гугле таблиц НЕ использовать
-        /// </summary>
-        public static void ConnektGoogleTabl()
-        {
-            using (TablGoogleContext db = new TablGoogleContext())
-            {
-                // создаем два объекта User
-                TablGoogle tablGoogle = new TablGoogle { NameClienta = "Первый клиент", PassClient = "12345" };
-                TablGoogle tablGoogle2 = new TablGoogle { NameClienta = "Второй клиент", PassClient = "7777" };
-                // User user2 = new User { Name = "Второнах", Age = 25 };
-
-                // добавляем их в бд
-                db.TablGoogles.Add(tablGoogle);
-                db.TablGoogles.Add(tablGoogle2);
-                //db.Users.Add(user1);
-                //db.Users.Add(user2);
-                db.SaveChanges(); // сохранение действий с БД
-
-                log += "Записанный в БД текущие обьекты: \t\n tablGoogle и tablGoogle2 \t\n";
-
-                Console.WriteLine("Что то записалось в БД");
-            }
-
-            Console.WriteLine(log);
-            Console.ReadKey();
-        }
-
-
-        //НЕ использовать
-        public static void AddTableToSqllite(TablGoogle tablGoogle)
-        {
-            using (TablGoogleContext db = new TablGoogleContext())
-            {
-                // создаем два объекта User
-                TablGoogle tablGoogle1 = new TablGoogle();
-                tablGoogle1 = tablGoogle;
-                // TablGoogle tablGoogle2 = new TablGoogle { NameClienta = "Второй клиент", PassClient = "7777" };
-                // User user2 = new User { Name = "Второнах", Age = 25 };
-
-                // добавляем их в бд
-                db.TablGoogles.Add(tablGoogle);
-                //db.TablGoogles.Add(tablGoogle2);
-                //db.Users.Add(user1);
-                //db.Users.Add(user2);
-                db.SaveChanges(); // сохранение действий с БД
-
-                // log += "Записанный в БД текущие обьекты: \t\n tablGoogle и tablGoogle2 \t\n";
-
-                // Console.WriteLine($"Что то записалось в БД{tablGoogle1}");
-            }
-
-            //   Console.WriteLine(log);
-            // Console.ReadKey();
-        }
-
-
 
         /// <summary>
         /// Полученние данных из БД из Таблиц гугла
@@ -161,7 +86,6 @@ namespace ConsoleApp
             Console.ReadKey();
         }
 
-   
         /// <summary>
         /// Запись текста в файл
         /// </summary>
@@ -176,7 +100,7 @@ namespace ConsoleApp
                 using (StreamWriter sw = new StreamWriter(patchText, true, System.Text.Encoding.Default))
                 {
                     // sw.WriteLine("Дозапись");
-                    sw.Write(text+"\t\n"); // запись
+                    sw.Write(text + "\t\n"); // запись
                 }
             }
             catch (Exception ex)
@@ -185,95 +109,7 @@ namespace ConsoleApp
             }
 
         }
-       
-        
-        
-        /// <summary>
-        /// Запись в таблицу ексель Пока не работает
-        /// </summary>
-        public static void SaveExelTable()
-        {
-            // https://www.codeproject.com/Tips/705470/Read-and-Write-Excel-Documents-Using-OLEDB
-            //http://www.cyberforum.ru/csharp-net/thread709715.html
-            Console.WriteLine("Попытка записи в ексель файл ");
-            //  string path = "c:\\Jurnal\\Журнал учета файлов.xls";
-            string path = "Журнал учета файлов.xls"; //
 
-            if (!File.Exists(path))
-                SQLiteConnection.CreateFile(path);
-
-            string coonekTexel = GetConnectionString();
-
-            // OleDbConnection excelConnection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source='Журнал учета файлов.xls';Extended Properties=Excel 12.0;");
-            OleDbConnection excelConnection = new OleDbConnection(coonekTexel);
-
-            try
-            {
-
-                string nameoffile = "Тест1";
-                long fsize = 1050;
-                string date_cr = "2019";
-                string date_cr_time = DateTime.Now.ToString();
-                int nom = 1;
-
-                string sqlStquery = "Insert into [БД$]([Имя файла],[Размер файла],[Дата создания],[Время создания],[Номер]) Values('" + nameoffile + "','"
-                   + fsize + "','" + date_cr + "','" + date_cr_time + "','" + nom + "')";
-                // string еучеее = "текстовой текст";
-                // string sqlStquery =  "Insert into [БД$]([Имя файла] Values('"+еучеее+"')";
-
-                excelConnection.Open();
-
-                OleDbDataAdapter dbadapter = new OleDbDataAdapter(sqlStquery, excelConnection);
-
-                dbadapter.SelectCommand.ExecuteNonQuery();
-                dbadapter.Dispose();
-
-
-                excelConnection.Close();
-                excelConnection.Dispose();
-            }
-            catch (Exception ex)
-            {
-                excelConnection.Close();
-                excelConnection.Dispose();
-                Console.WriteLine("Ошибка при записи в ексель файл " + ex);
-                // MessageBox.Show("Error :" + ex.ToString());
-
-            }
-            Console.ReadKey();
-        }
-
-        /// <summary>
-        /// Строка подключения к ексель странице
-        /// </summary>
-        /// <returns></returns>
-        private static string GetConnectionString()
-        {
-            Dictionary<string, string> props = new Dictionary<string, string>();
-            string path = "Журнал учета файлов.xls"; //
-            // XLSX - Excel 2007, 2010, 2012, 2013
-            props["Provider"] = "Microsoft.ACE.OLEDB.12.0;";
-            props["Extended Properties"] = "Excel 12.0 XML";
-            // props["Data Source"] = "C:\\MyExcel.xlsx";
-            props["Data Source"] = path;
-
-            // XLS - Excel 2003 and Older
-            //props["Provider"] = "Microsoft.Jet.OLEDB.4.0";
-            //props["Extended Properties"] = "Excel 8.0";
-            //props["Data Source"] = "C:\\MyExcel.xls";
-
-            StringBuilder sb = new StringBuilder();
-
-            foreach (KeyValuePair<string, string> prop in props)
-            {
-                sb.Append(prop.Key);
-                sb.Append('=');
-                sb.Append(prop.Value);
-                sb.Append(';');
-            }
-
-            return sb.ToString();
-        }
 
         /// <summary>
         /// Скачиваем данные из таблицы гугл. Тимы и пароли и запысываем в sqllite
@@ -306,7 +142,7 @@ namespace ConsoleApp
                 ApplicationName = ApplicationName,
             });
 
-            // Define request parameters.
+            // Определение параметров запроса 
             //String spreadsheetId = "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms";
             String spreadsheetId = "1H6LEiczHkmw5tYBoO9nwR_fBXZTm4QAudwQDNYuIsDo";
             //  String range = "Class Data!A2:E";
@@ -315,23 +151,23 @@ namespace ConsoleApp
             SpreadsheetsResource.ValuesResource.GetRequest request =
                     service.Spreadsheets.Values.Get(spreadsheetId, range);
 
-            // Prints the names and majors of students in a sample spreadsheet:
+            // ПРИМЕР Печать имен и специальностей студентов в образце электронной таблицы:
             // https://docs.google.com/spreadsheets/d/1H6LEiczHkmw5tYBoO9nwR_fBXZTm4QAudwQDNYuIsDo/edit#gid=0
             // https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
 
             ValueRange response = request.Execute();
-            IList<IList<Object>> values = response.Values; // получаем таблицу
+            IList<IList<Object>> values = response.Values; // получаем таблицу с данными
 
             Console.WriteLine("Содержимое таблицы");
 
             int countStirnTable = 0;
-            int variableStirnTable = values.Count;
-            var tempList = new List<string>();
+            int variableStirnTable = values.Count; //количество строк
+            var tempList = new List<string>(); 
             string temph = "";
 
             using (TablGoogleContext db = new TablGoogleContext())
             {
-                // создаем два объекта TablGoogle
+                // создаем объект TablGoogle
                 TablGoogle tablGoogle = new TablGoogle();
 
                 foreach (var row in values)
@@ -347,10 +183,10 @@ namespace ConsoleApp
                         countStirnTable++;
                         SaveFileText(temph);
 
-                        TablGoogle tablGoogle1 = new TablGoogle { NameClienta = row[0].ToString(), TelefonClient = row[1].ToString(), PassClient = row[2].ToString(), DataTimeAddTable=(DateTime.Now.ToString()) };
-                        
+                        TablGoogle tablGoogle1 = new TablGoogle { NameClienta = row[0].ToString(), TelefonClient = row[1].ToString(), PassClient = row[2].ToString(), DataTimeAddTable = (DateTime.Now.ToString()) };
+
                         db.TablGoogles.Add(tablGoogle1); // добавление в бд
-                      //  db.SaveChanges(); // выходят ошибки
+                                                         //  db.SaveChanges(); // выходят ошибки
                     }
 
                     catch (Exception ex)
@@ -363,13 +199,13 @@ namespace ConsoleApp
                 db.SaveChanges(); // сохранение действий с БД
                 Console.WriteLine("Завершено!! Нажмите любую кнопку");
                 watch.Stop();
-               // Console.Read();
+                // Console.Read();
             }
 
             Console.WriteLine($"Завершино Всего в списке {variableStirnTable} строк!/t/n Полученно перебором{countStirnTable}\t\n Время получения списка пользователей и добавения данных {watch.ElapsedMilliseconds} милисекунд или {watch.Elapsed.Seconds}секунд \t\n");
             Console.Read();
             Console.Read();
-        }
+        } // конец метода тест2
 
         /// <summary>
         /// Тестовой метод для работы с запросами Linq
@@ -381,7 +217,7 @@ namespace ConsoleApp
 
             using (var context = new TablGoogleContext()) // экземлряр контекства для связи с бд
             {
-                var table = new TablGoogle();  
+                var table = new TablGoogle();
                 context.TablGoogles.Load(); //Загрузка данных из БД
 
                 var temp = context.TablGoogles.Local.ToBindingList(); //выгружаем в локальный кеш данне из бд
@@ -396,21 +232,21 @@ namespace ConsoleApp
 
                     //if (table.Id <= 20)
                     //{
-                        tempZnach += $"ID{table.Id},\t\n ИМЯ {table.NameClienta} \t\n ";
-                   // }
-                    
+                    tempZnach += $"ID{table.Id},\t\n ИМЯ {table.NameClienta} \t\n ";
+                    // }
+
                 }
 
                 //string temp1 = temp.
-                
-                    Console.WriteLine($"Общие количество записей {tempCant}");
-                    Console.WriteLine(tempZnach);
+
+                Console.WriteLine($"Общие количество записей {tempCant}");
+                Console.WriteLine(tempZnach);
                 // this.DataContext = db.Phones.Local.ToBindingList();
             }
             Console.ReadKey();
         }
         /// <summary>
-        /// Получение общего количества строк в таблице
+        /// Получение общего количества строк в таблице с помощью запроса к Бд
         /// </summary>
         /// <returns></returns>
         public static int GetCountTablGoogle()
@@ -432,7 +268,7 @@ namespace ConsoleApp
         /// <param name="nameClient"></param>
         /// <param name="passClient"></param>
         /// <param name="telefonClient"></param>
-        public static void AddClientTablGoogle(string nameClient, string passClient,string telefonClient )
+        public static void AddClientTablGoogle(string nameClient, string passClient, string telefonClient)
         {
             //Обект для доавления в БД
             TablGoogle adduserTable = new TablGoogle()
@@ -447,7 +283,7 @@ namespace ConsoleApp
             {
                 db.TablGoogles.Load(); // загрузка текущего стостояния бд в локальный кэш
 
-               // var resulIF = db.TablGoogles.Where(item => item.NameClienta != adduserTable.NameClienta); // 
+                // var resulIF = db.TablGoogles.Where(item => item.NameClienta != adduserTable.NameClienta); // 
 
 
 
@@ -467,7 +303,7 @@ namespace ConsoleApp
 
             //Обект для доавления в БД
             TablGoogle adduserTable = new TablGoogle();
-             
+
             using (var db = new TablGoogleContext())// конткст для работы с базой данной
             {
                 TablGoogle adduserTable2 = new TablGoogle();
@@ -517,8 +353,8 @@ namespace ConsoleApp
             using (var db2 = new TablGoogleContext())
             {
                 db2.TablGoogles.Load();
-                var name = db2.TablGoogles.Select(c=>c.NameClienta).FirstOrDefault();  // Вывод первого значения с строке
-               IQueryable<string> nameSeach = db2.TablGoogles.Select(c=> c.NameClienta).Where(c=>c.Contains(nameClient));
+                var name = db2.TablGoogles.Select(c => c.NameClienta).FirstOrDefault();  // Вывод первого значения с строке
+                IQueryable<string> nameSeach = db2.TablGoogles.Select(c => c.NameClienta).Where(c => c.Contains(nameClient));
                 var temp = (from t in db2.TablGoogles where t.NameClienta.ToUpper().StartsWith(nameClient) select t).ToString();
                 //var seahs = db2.TablGoogles.Where(t => t.NameClienta.ToUpper("А").OrderBy());
 
@@ -528,7 +364,7 @@ namespace ConsoleApp
 
                 foreach (var ss in temp)
                 {
-                   // Console.WriteLine(ss);
+                    // Console.WriteLine(ss);
                 }
             }
             Console.WriteLine("Поиск завершен...Нажмите любую кнопку");
@@ -544,7 +380,7 @@ namespace ConsoleApp
             {
                 string temp = "ООО"; // переменная хранит  искомая имя
                 string tempResult = "";
-                int tempResultOD ;
+                int tempResultOD;
                 foreach (TablGoogle googleTable in tablGoogle.TablGoogles)
                 {
                     if (googleTable.NameClienta.Contains(temp))
@@ -572,8 +408,8 @@ namespace ConsoleApp
             //https://www.youtube.com/watch?v=ySDvruLcn2I&t=2922s
 
             var resultGetLinq = from item in TestListGetBDTableIDCllient // указываем откудв азять и куда положить
-                                where item <100  // условие быборки
-                                select item ; // фыбираем и фиксируем нужнве изменнения 
+                                where item < 100  // условие быборки
+                                select item; // фыбираем и фиксируем нужнве изменнения 
             Console.WriteLine("Вывод списка клиентов");
             //линк запрос с помощь. метода разширений и лямба методов
             var result2 = TestListGetBDTableIDCllient.Where(item => item > 1000 & item < 1050);
@@ -596,11 +432,11 @@ namespace ConsoleApp
             var selectColectionTelefon = TestListTablGoogle.Select(nameCletnt => nameCletnt.TelefonClient); //преоброзование
 
             var orderCollectoins = TestListTablGoogle.OrderBy(nameGet => nameGet.NameClienta); // упорядование по имени
-         //   var orderCollectoins = TestListTablGoogle.OrderBy(nameGet => nameGet.NameClienta); // упорядование по имени
+                                                                                               //   var orderCollectoins = TestListTablGoogle.OrderBy(nameGet => nameGet.NameClienta); // упорядование по имени
             var orderCollectoinsPassClenta = TestListTablGoogle.OrderBy(nameGet => nameGet.TelefonClient).ThenBy(nameCleenta => nameCleenta.NameClienta); // упорядование по имени
 
             //обьединение в колекциях
-          //  var arreyUnion = selectColectionTelefon.Union(selectColectionPass);
+            //  var arreyUnion = selectColectionTelefon.Union(selectColectionPass);
 
             // убираем повторение в колекциях 
 
@@ -612,17 +448,13 @@ namespace ConsoleApp
             }
             Console.WriteLine($"Количество значений{selectColectionTelefon.Count()}\t\nПосле******************");
 
-            
+
 
             Console.ReadKey();
         }
 
 
-    }
-
-
-      
-
-
-}
     
+
+    }
+}
