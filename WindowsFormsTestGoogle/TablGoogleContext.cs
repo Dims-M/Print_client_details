@@ -7,23 +7,18 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsTestGoogle
 {
-    
-    /// <summary>
-    /// посредник между бд и классами, описывающими данные.
-    /// </summary>
-    class UserContext : DbContext
+   public class TablGoogleContext : DbContext
     {
-        public UserContext()
-          // : base("DbConnection") //"DbConnection" - это имя будущей строки подключения к базе данных
+
+        public TablGoogleContext()
+        //  : base("DbConnection1") //"DbConnection" - это имя будущей строки подключения к базе данных
+         : base("DefaultConnectionSqlLite") //"DbConnection" - это имя будущей строки подключения к базе данных
         { }
 
         /// <summary>
         /// Связь между обьектами Базы данных и класами в програме.
         /// Посредник между бд и классами, описывающими данные.
         /// </summary>
-      //  public DbSet<User> Users { get; set; }
+        public DbSet<TablGoogle> TablGoogles { get; set; }
     }
-
-
-
 }

@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.OleDb;
-//using System.Data.SQLite;
+using System.Data.SQLite;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -20,7 +20,7 @@ using ConsoleApp;
 
 namespace WindowsFormsTestGoogle
 {
-   public class BL
+   public  class BL
     {
 
         //ПЕРЕМЕННЫЕ
@@ -83,7 +83,7 @@ namespace WindowsFormsTestGoogle
 
             }
             Console.WriteLine(log);
-            Console.ReadKey();
+          //  Console.ReadKey();
         }
 
         /// <summary>
@@ -118,7 +118,7 @@ namespace WindowsFormsTestGoogle
         {
             UserCredential credential;
             Stopwatch watch = new Stopwatch(); //обьект для замера времени работы программы
-            watch.Start();
+            watch.Start(); //запуск программы замера
 
             using (var stream =
                 new FileStream("credentials.json", FileMode.Open, FileAccess.Read))
@@ -132,7 +132,7 @@ namespace WindowsFormsTestGoogle
                                 "user",
                                 CancellationToken.None,
                                 new FileDataStore(credPath, true)).Result;
-                Console.WriteLine("Файл учетных данных, сохраненный: " + credPath);
+             //   Console.WriteLine("Файл учетных данных, сохраненный: " + credPath);
             }
 
             // Create Google Sheets API service.
@@ -158,7 +158,7 @@ namespace WindowsFormsTestGoogle
             ValueRange response = request.Execute();
             IList<IList<Object>> values = response.Values; // получаем таблицу с данными
 
-            Console.WriteLine("Содержимое таблицы");
+           // Console.WriteLine("Содержимое таблицы");
 
             int countStirnTable = 0;
             int variableStirnTable = values.Count; //количество строк
@@ -195,16 +195,16 @@ namespace WindowsFormsTestGoogle
                     }
                 }
                 //watch.Stop();
-                Console.WriteLine($"Завершино Всего в списке {variableStirnTable} строк! \t\nИдет добавление данных в БД \t\n Ожидайте....");
+           //     Console.WriteLine($"Завершино Всего в списке {variableStirnTable} строк! \t\nИдет добавление данных в БД \t\n Ожидайте....");
                 db.SaveChanges(); // сохранение действий с БД
-                Console.WriteLine("Завершено!! Нажмите любую кнопку");
+             //   Console.WriteLine("Завершено!! Нажмите любую кнопку");
                 watch.Stop();
                 // Console.Read();
             }
 
-            Console.WriteLine($"Завершино Всего в списке {variableStirnTable} строк!/t/n Полученно перебором{countStirnTable}\t\n Время получения списка пользователей и добавения данных {watch.ElapsedMilliseconds} милисекунд или {watch.Elapsed.Seconds}секунд \t\n");
-            Console.Read();
-            Console.Read();
+          //  Console.WriteLine($"Завершино Всего в списке {variableStirnTable} строк!/t/n Полученно перебором{countStirnTable}\t\n Время получения списка пользователей и добавения данных {watch.ElapsedMilliseconds} милисекунд или {watch.Elapsed.Seconds}секунд \t\n");
+          //  Console.Read();
+          //  Console.Read();
         } // конец метода тест2
 
         /// <summary>

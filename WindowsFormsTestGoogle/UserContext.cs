@@ -1,11 +1,12 @@
-﻿using System;
+﻿using ConsoleApp.Model;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WindowsFormsTestGoogle
+namespace ConsoleApp
 {
     
     /// <summary>
@@ -21,7 +22,7 @@ namespace WindowsFormsTestGoogle
         /// Связь между обьектами Базы данных и класами в програме.
         /// Посредник между бд и классами, описывающими данные.
         /// </summary>
-      //  public DbSet<User> Users { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 
 

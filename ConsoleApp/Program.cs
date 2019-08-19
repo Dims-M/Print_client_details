@@ -57,7 +57,7 @@ namespace ConsoleApp
         //static string ApplicationName = "Тимы клиентов"; // имя аодключения
         static void Main(string[] args)
         {
-            // test2(); // Загрузка  из гугл таблиц и добавления их в БД
+             test2(); // Загрузка  из гугл таблиц и добавления их в БД
             // LinoConneckt();  //Тестовой метод получения данных
             // Console.WriteLine( GetCountTablGoogle()); // получение количество сток из БД
             //  AddClientTablGoogle("Тестовая строка","51215658", "****");
@@ -68,11 +68,11 @@ namespace ConsoleApp
             //Поиск по имени
             // SeachNameClient("ООО Алар");//Поиск по имени ПОКА НЕ РАБОТАЕТ Ы
 
-            GetClient(); //Вывод из бд
+           // GetClient(); //Вывод из бд
 
             //запосы лино
             //https://www.youtube.com/watch?v=ySDvruLcn2I&t=1555s
-            RabotaLinfCodeBlok();
+           // RabotaLinfCodeBlok();
 
             Console.ReadKey();
         }
