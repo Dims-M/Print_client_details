@@ -38,9 +38,10 @@ namespace WindowsFormsTestGoogle
             labelCauntClient.Visible = true;
             labelCauntClient.Text = tempCount.ToString();
 
-            //dataGridView1.DataSource = BL.GetCountLastValue(); //получение 10 значенийй
-           // await Task.Run(() => dataGridView1.DataSource = BL.GetCountLastValue());
-        }
+           //  await Task.Run(() => dataGridView1.DataSource = BL.GetCountLastValue());
+            Invoke((MethodInvoker)delegate { dataGridView1.DataSource = BL.GetCountLastValue(); }); // загружаем в таблицу данные послеедние 10 значений
+        
+    }
 
 
         //Область для вывода данных при щелчке
@@ -77,8 +78,8 @@ namespace WindowsFormsTestGoogle
         //Показать всех клиентов
         private void Button4_Click(object sender, EventArgs e)
         {
-          
-            dataGridView1.DataSource = googleContext2.TablGoogles.Local.ToBindingList(); // загрузка контекста в дату гриф
+            dataGridView1.DataSource  = BL.GetAllTablGoogle();
+           // dataGridView1.DataSource = googleContext2.TablGoogles.Local.ToBindingList(); // загрузка контекста в дату гриф
            
         }
 

@@ -406,8 +406,28 @@ namespace WindowsFormsTestGoogle
             }
         }
 
+        /// <summary>
+        /// Метод возращает реверсирование все строки из БД
+        /// </summary>
+        /// <returns></returns>
+        public static List<TablGoogle> GetAllTablGoogle()
+        {
+            List<TablGoogle> tenpp = new List<TablGoogle>();
 
-        public static List<TablGoogle> GetCountLastValue()
+            using (var db2 = new TablGoogleContext())
+            {
+                db2.TablGoogles.Load();
+                var temppppp = db2.TablGoogles.Local.ToBindingList();
+
+                foreach (TablGoogle googleTable in temppppp.Reverse())
+                {
+                    tenpp.Add(googleTable);
+                }
+            }
+            return tenpp;
+         }
+
+            public static List<TablGoogle> GetCountLastValue()
         {
             using (var db2 = new TablGoogleContext())
             {
