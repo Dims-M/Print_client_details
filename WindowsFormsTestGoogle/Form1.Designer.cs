@@ -37,12 +37,9 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxSeath = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tablGoogleContextBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tablGoogleBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,13 +47,16 @@
             this.passClientDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.telefonClientDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataTimeAddTableDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tablGoogleBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tablGoogleContextBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablGoogleBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablGoogleContextBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tablGoogleBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -64,7 +64,7 @@
             this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.textBoxSeath);
             this.panel1.Controls.Add(this.tabControl1);
             this.panel1.Controls.Add(this.labelCauntClient);
             this.panel1.Controls.Add(this.labelCInfo);
@@ -140,17 +140,17 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(595, 235);
+            this.tabPage2.Size = new System.Drawing.Size(826, 277);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // textBoxSeath
             // 
-            this.textBox1.Location = new System.Drawing.Point(603, 28);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(138, 22);
-            this.textBox1.TabIndex = 5;
+            this.textBoxSeath.Location = new System.Drawing.Point(603, 28);
+            this.textBoxSeath.Name = "textBoxSeath";
+            this.textBoxSeath.Size = new System.Drawing.Size(138, 22);
+            this.textBoxSeath.TabIndex = 5;
             // 
             // label1
             // 
@@ -185,18 +185,6 @@
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellContentClick);
             // 
-            // userBindingSource
-            // 
-            this.userBindingSource.DataSource = typeof(ConsoleApp.Model.User);
-            // 
-            // tablGoogleContextBindingSource
-            // 
-            this.tablGoogleContextBindingSource.DataSource = typeof(ConsoleApp.TablGoogleContext);
-            // 
-            // tablGoogleBindingSource
-            // 
-            this.tablGoogleBindingSource.DataSource = typeof(ConsoleApp.Model.TablGoogle);
-            // 
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(759, 25);
@@ -223,6 +211,7 @@
             this.idDataGridViewTextBoxColumn.HeaderText = "Id";
             this.idDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
             this.idDataGridViewTextBoxColumn.Width = 30;
             // 
             // nameClientaDataGridViewTextBoxColumn
@@ -231,6 +220,7 @@
             this.nameClientaDataGridViewTextBoxColumn.HeaderText = "NameClienta";
             this.nameClientaDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.nameClientaDataGridViewTextBoxColumn.Name = "nameClientaDataGridViewTextBoxColumn";
+            this.nameClientaDataGridViewTextBoxColumn.ReadOnly = true;
             this.nameClientaDataGridViewTextBoxColumn.Width = 125;
             // 
             // passClientDataGridViewTextBoxColumn
@@ -239,6 +229,7 @@
             this.passClientDataGridViewTextBoxColumn.HeaderText = "PassClient";
             this.passClientDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.passClientDataGridViewTextBoxColumn.Name = "passClientDataGridViewTextBoxColumn";
+            this.passClientDataGridViewTextBoxColumn.ReadOnly = true;
             this.passClientDataGridViewTextBoxColumn.Width = 125;
             // 
             // telefonClientDataGridViewTextBoxColumn
@@ -247,6 +238,7 @@
             this.telefonClientDataGridViewTextBoxColumn.HeaderText = "TelefonClient";
             this.telefonClientDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.telefonClientDataGridViewTextBoxColumn.Name = "telefonClientDataGridViewTextBoxColumn";
+            this.telefonClientDataGridViewTextBoxColumn.ReadOnly = true;
             this.telefonClientDataGridViewTextBoxColumn.Width = 125;
             // 
             // dataTimeAddTableDataGridViewTextBoxColumn
@@ -255,7 +247,20 @@
             this.dataTimeAddTableDataGridViewTextBoxColumn.HeaderText = "DataTimeAddTable";
             this.dataTimeAddTableDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.dataTimeAddTableDataGridViewTextBoxColumn.Name = "dataTimeAddTableDataGridViewTextBoxColumn";
+            this.dataTimeAddTableDataGridViewTextBoxColumn.ReadOnly = true;
             this.dataTimeAddTableDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // tablGoogleBindingSource
+            // 
+            this.tablGoogleBindingSource.DataSource = typeof(ConsoleApp.Model.TablGoogle);
+            // 
+            // userBindingSource
+            // 
+            this.userBindingSource.DataSource = typeof(ConsoleApp.Model.User);
+            // 
+            // tablGoogleContextBindingSource
+            // 
+            this.tablGoogleContextBindingSource.DataSource = typeof(ConsoleApp.TablGoogleContext);
             // 
             // Form1
             // 
@@ -271,9 +276,9 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablGoogleBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablGoogleContextBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tablGoogleBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -282,7 +287,7 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxSeath;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;

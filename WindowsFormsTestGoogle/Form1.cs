@@ -80,10 +80,21 @@ namespace WindowsFormsTestGoogle
         //кнопка поиска ок
         private void Button3_Click(object sender, EventArgs e)
         {
-            // dataGridView1.Update();
-            dataGridView1.DataSource = null; 
+            if (textBoxSeath.Text !="" && textBoxSeath.Text != null)
+            {
+                dataGridView1.DataSource = null;
 
-            dataGridView1.DataSource = BL.SeachNameClient("ООО Алар");
+                dataGridView1.DataSource = BL.SeachNameClient(textBoxSeath.Text);
+            }
+
+            else
+            {
+                MessageBox.Show( "Ошибка при поиске \t\nПоле поиска не должно быть пустым");
+            }
+            // dataGridView1.Update();
+           // dataGridView1.DataSource = null; 
+
+           // dataGridView1.DataSource = BL.SeachNameClient("ООО Алар");
         }
     }
 }
