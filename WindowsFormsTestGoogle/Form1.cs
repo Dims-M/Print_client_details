@@ -40,8 +40,12 @@ namespace WindowsFormsTestGoogle
 
            //  await Task.Run(() => dataGridView1.DataSource = BL.GetCountLastValue());
             Invoke((MethodInvoker)delegate { dataGridView1.DataSource = BL.GetCountLastValue(); }); // загружаем в таблицу данные послеедние 10 значений
-        
-    }
+                                                                                                    // удаление вкладки
+                                                                                                    // по индексу
+            tabControl1.TabPages.RemoveAt(1); // удаление 1 вклаки
+            // по объекту
+           // tabControl1.TabPages.Remove(newTabPage);
+        }
 
 
         //Область для вывода данных при щелчке
