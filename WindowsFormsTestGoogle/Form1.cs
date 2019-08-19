@@ -37,6 +37,9 @@ namespace WindowsFormsTestGoogle
             await Task.Run(() => tempCount = BL.GetCountTablGoogle()); // получение количество сток из БД                                                   // tempCount = BL.GetCountTablGoogle();                                                      // BL.GetCountTablGoogle(); 
             labelCauntClient.Visible = true;
             labelCauntClient.Text = tempCount.ToString();
+
+            //dataGridView1.DataSource = BL.GetCountLastValue(); //получение 10 значенийй
+           // await Task.Run(() => dataGridView1.DataSource = BL.GetCountLastValue());
         }
 
 
@@ -65,16 +68,18 @@ namespace WindowsFormsTestGoogle
             // BL.AddDataTableGoogle();
             //  BL.test2();
             //labelCauntClient.Text =  BL.GetCountTablGoogle().ToString();
-           // dataGridView1.DataSource = BL.GetClient();
-          //  dataGridView1.DataSource = googleContext2.TablGoogles.Local.ToBindingList(); // загрузка контекста в дату гриф
-
+            // dataGridView1.DataSource = BL.GetClient();
+            //  dataGridView1.DataSource = googleContext2.TablGoogles.Local.ToBindingList(); // загрузка контекста в дату гриф
+            // await Task.Run(() => dataGridView1.DataSource = BL.GetCountLastValue());
+            dataGridView1.DataSource = BL.GetCountLastValue();
         }
 
         //Показать всех клиентов
         private void Button4_Click(object sender, EventArgs e)
         {
+          
             dataGridView1.DataSource = googleContext2.TablGoogles.Local.ToBindingList(); // загрузка контекста в дату гриф
-
+           
         }
 
         //кнопка поиска ок

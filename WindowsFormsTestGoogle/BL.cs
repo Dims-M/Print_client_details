@@ -406,10 +406,43 @@ namespace WindowsFormsTestGoogle
             }
         }
 
-        /// <summary>
-        /// Тестовой метод работы с линг от codeBlog
-        /// </summary>
-        public static void RabotaLinfCodeBlok()
+
+        public static List<TablGoogle> GetCountLastValue()
+        {
+            using (var db2 = new TablGoogleContext())
+            {
+                db2.TablGoogles.Load();
+                var temppppp = db2.TablGoogles.Local.ToBindingList();
+
+                //  var name = db2.TablGoogles.Select(c => c.NameClienta).FirstOrDefault();  // Вывод первого значения с строке
+                //var temp = db2.TablGoogles.Select(c => c.NameClienta).Reverse().ToList();
+
+                List<TablGoogle> tenpp = new List<TablGoogle>();
+                // var ttttt = db2.TablGoogles.; //  SkipLast();
+                // var temp = (from t in db2.TablGoogles where (t.NameClienta.ToUpper()).ToList());
+                //
+                int i = 0;
+                foreach (TablGoogle googleTable in temppppp.Reverse())
+                {
+                     
+                    tenpp.Add(googleTable);
+                    i++;
+                    if (i==10)
+                    {
+                        break;
+                    }
+                    
+                }
+
+                //  var temp = (from t in db2.TablGoogles where t.NameClienta.ToUpper().StartsWith(nameClient) select t).ToList();
+                //var seahs = db2.TablGoogles.Where(t => t.NameClienta.ToUpper("А").OrderBy());
+                return tenpp;
+            }
+        }
+            /// <summary>
+            /// Тестовой метод работы с линг от codeBlog
+            /// </summary>
+            public static void RabotaLinfCodeBlok()
         {
             //https://www.youtube.com/watch?v=ySDvruLcn2I&t=2922s
 

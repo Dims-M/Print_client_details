@@ -42,14 +42,15 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.tablGoogleBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tablGoogleContextBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.button5 = new System.Windows.Forms.Button();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameClientaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.passClientDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.telefonClientDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataTimeAddTableDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tablGoogleBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tablGoogleContextBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -61,6 +62,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button5);
             this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.label1);
@@ -199,11 +201,32 @@
             // 
             this.button4.Location = new System.Drawing.Point(17, 348);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(184, 26);
+            this.button4.Size = new System.Drawing.Size(184, 37);
             this.button4.TabIndex = 8;
             this.button4.Text = "Показать всех клиентов";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.Button4_Click);
+            // 
+            // tablGoogleBindingSource
+            // 
+            this.tablGoogleBindingSource.DataSource = typeof(ConsoleApp.Model.TablGoogle);
+            // 
+            // userBindingSource
+            // 
+            this.userBindingSource.DataSource = typeof(ConsoleApp.Model.User);
+            // 
+            // tablGoogleContextBindingSource
+            // 
+            this.tablGoogleContextBindingSource.DataSource = typeof(ConsoleApp.TablGoogleContext);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(223, 348);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(184, 37);
+            this.button5.TabIndex = 9;
+            this.button5.Text = "Добавть клиента";
+            this.button5.UseVisualStyleBackColor = true;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -212,7 +235,7 @@
             this.idDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
             this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn.Width = 30;
+            this.idDataGridViewTextBoxColumn.Width = 40;
             // 
             // nameClientaDataGridViewTextBoxColumn
             // 
@@ -249,18 +272,6 @@
             this.dataTimeAddTableDataGridViewTextBoxColumn.Name = "dataTimeAddTableDataGridViewTextBoxColumn";
             this.dataTimeAddTableDataGridViewTextBoxColumn.ReadOnly = true;
             this.dataTimeAddTableDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // tablGoogleBindingSource
-            // 
-            this.tablGoogleBindingSource.DataSource = typeof(ConsoleApp.Model.TablGoogle);
-            // 
-            // userBindingSource
-            // 
-            this.userBindingSource.DataSource = typeof(ConsoleApp.Model.User);
-            // 
-            // tablGoogleContextBindingSource
-            // 
-            this.tablGoogleContextBindingSource.DataSource = typeof(ConsoleApp.TablGoogleContext);
             // 
             // Form1
             // 
@@ -301,6 +312,7 @@
         private System.Windows.Forms.BindingSource tablGoogleContextBindingSource;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameClientaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn passClientDataGridViewTextBoxColumn;
