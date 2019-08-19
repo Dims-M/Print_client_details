@@ -40,7 +40,7 @@ namespace WindowsFormsTestGoogle
         }
 
 
-        //Область для вывода данных
+        //Область для вывода данных при щелчке
         private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
           //  dataGridView1.DataSource = googleContext2.TablGoogles.Local.ToBindingList(); // загрузка контекста в дату гриф
@@ -66,7 +66,20 @@ namespace WindowsFormsTestGoogle
             //  BL.test2();
             //labelCauntClient.Text =  BL.GetCountTablGoogle().ToString();
            // dataGridView1.DataSource = BL.GetClient();
+          //  dataGridView1.DataSource = googleContext2.TablGoogles.Local.ToBindingList(); // загрузка контекста в дату гриф
+
+        }
+
+        //Показать всех клиентов
+        private void Button4_Click(object sender, EventArgs e)
+        {
             dataGridView1.DataSource = googleContext2.TablGoogles.Local.ToBindingList(); // загрузка контекста в дату гриф
+
+        }
+
+        //кнопка поиска ок
+        private void Button3_Click(object sender, EventArgs e)
+        {
 
         }
     }
