@@ -325,7 +325,7 @@ namespace WindowsFormsTestGoogle
         /// Поиск по точному значению
         /// </summary>
         /// <param name="nameClient"></param>
-        public static void SeachNameClient(string nameClient)
+        public static List<TablGoogle> SeachNameClient(string nameClient)
         {
             string tempLog = $"Поиск в таблице по имени клиента {nameClient} ";
             List<TablGoogle> lisTtablGoogles = new List<TablGoogle>(); // лист для хранения найденных элементов
@@ -358,7 +358,7 @@ namespace WindowsFormsTestGoogle
                 db2.TablGoogles.Load();
                 var name = db2.TablGoogles.Select(c => c.NameClienta).FirstOrDefault();  // Вывод первого значения с строке
                 IQueryable<string> nameSeach = db2.TablGoogles.Select(c => c.NameClienta).Where(c => c.Contains(nameClient));
-                var temp = (from t in db2.TablGoogles where t.NameClienta.ToUpper().StartsWith(nameClient) select t).ToString();
+                var temp = (from t in db2.TablGoogles where t.NameClienta.ToUpper().StartsWith(nameClient) select t).ToList();
                 //var seahs = db2.TablGoogles.Where(t => t.NameClienta.ToUpper("А").OrderBy());
 
                 Console.WriteLine($"Поиск 1{name}");
@@ -369,9 +369,11 @@ namespace WindowsFormsTestGoogle
                 {
                     // Console.WriteLine(ss);
                 }
+                return temp.ToList();
             }
-            Console.WriteLine("Поиск завершен...Нажмите любую кнопку");
-            Console.ReadKey();
+            // Console.WriteLine("Поиск завершен...Нажмите любую кнопку");
+            // Console.ReadKey();
+             
         }
 
         /// <summary>
