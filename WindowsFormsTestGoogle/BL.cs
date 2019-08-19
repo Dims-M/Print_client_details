@@ -22,6 +22,9 @@ namespace WindowsFormsTestGoogle
 {
    public  class BL
     {
+        //Коментарии
+        //В окне менеджера Nuget введем в окно поиска "SQLite", и менеджер отобразит нам ряд результатов.
+        //Из них нам надо установить пакет под названием System.Data.SqlClient:
 
         //ПЕРЕМЕННЫЕ
        // static public Phone Phone { get; private set; } //На удаление
