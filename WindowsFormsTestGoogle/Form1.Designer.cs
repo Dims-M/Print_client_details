@@ -149,6 +149,7 @@
             this.textBoxSeath.Name = "textBoxSeath";
             this.textBoxSeath.Size = new System.Drawing.Size(138, 22);
             this.textBoxSeath.TabIndex = 5;
+            this.textBoxSeath.Enter += new System.EventHandler(this.Button1_Click);
             // 
             // tabControl1
             // 

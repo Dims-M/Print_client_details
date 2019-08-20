@@ -13,6 +13,10 @@ using System.Data.Entity;
 
 namespace WindowsFormsTestGoogle
 {
+    //Вкладки https://metanit.com/sharp/windowsforms/3.5.php
+    //трей https://metanit.com/sharp/windowsforms/4.18.php
+    //енити фремворк https://metanit.com/sharp/entityframework/3.1.php
+    //linq https://metanit.com/sharp/tutorial/15.1.php
     public partial class Form1 : Form
     {
         /// <summary>
@@ -232,6 +236,16 @@ namespace WindowsFormsTestGoogle
                 MessageBox.Show("Объект удален");
             }
            // dataGridView1.Refresh(); // обновляем грид
+        }
+
+        /// <summary>
+        /// ентер на поиске
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TextBoxSeath_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
