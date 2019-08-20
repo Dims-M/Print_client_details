@@ -42,11 +42,17 @@ namespace WindowsFormsTestGoogle
             Invoke((MethodInvoker)delegate { dataGridView1.DataSource = BL.GetCountLastValue(); }); // загружаем в таблицу данные послеедние 10 значений
                                                                                                     // удаление вкладки
                                                                                                     // по индексу
-            tabControl1.TabPages.RemoveAt(1); // удаление 1 вклаки
+            tabControl1.TabPages.RemoveAt(1); // удаление 1 вкладки
             // по объекту
-           // tabControl1.TabPages.Remove(newTabPage);
+            // tabControl1.TabPages.Remove(newTabPage);
+            notifyIcon1.Click += notifyIcon1_Click;
         }
 
+        //Обработчик события нажатия на иконку в трее
+        void notifyIcon1_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Normal;
+        }
 
         //Область для вывода данных при щелчке
         private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

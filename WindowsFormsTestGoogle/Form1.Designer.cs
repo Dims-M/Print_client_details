@@ -29,30 +29,32 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.labelCInfo = new System.Windows.Forms.Label();
-            this.labelCauntClient = new System.Windows.Forms.Label();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBoxSeath = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.textBoxSeath = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameClientaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.passClientDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.telefonClientDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataTimeAddTableDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tablGoogleBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.labelCauntClient = new System.Windows.Forms.Label();
+            this.labelCInfo = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tablGoogleContextBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.button7 = new System.Windows.Forms.Button();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -82,43 +84,71 @@
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel1_Paint);
             // 
-            // button1
+            // button7
             // 
-            this.button1.Location = new System.Drawing.Point(759, 420);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(99, 36);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Выход";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            this.button7.Location = new System.Drawing.Point(650, 348);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(184, 37);
+            this.button7.TabIndex = 11;
+            this.button7.Text = "Удалить клиента ";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.Button7_Click);
             // 
-            // button2
+            // button6
             // 
-            this.button2.Location = new System.Drawing.Point(13, 419);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(97, 37);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Обновить";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.Button2_Click);
+            this.button6.Location = new System.Drawing.Point(436, 348);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(184, 37);
+            this.button6.TabIndex = 10;
+            this.button6.Text = "Изменить клиента";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.Button6_Click);
             // 
-            // labelCInfo
+            // button5
             // 
-            this.labelCInfo.AutoSize = true;
-            this.labelCInfo.Location = new System.Drawing.Point(14, 13);
-            this.labelCInfo.Name = "labelCInfo";
-            this.labelCInfo.Size = new System.Drawing.Size(155, 17);
-            this.labelCInfo.TabIndex = 2;
-            this.labelCInfo.Text = "Количество клиентов:";
+            this.button5.Location = new System.Drawing.Point(223, 348);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(184, 37);
+            this.button5.TabIndex = 9;
+            this.button5.Text = "Добавить клиента";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.Button5_Click);
             // 
-            // labelCauntClient
+            // button4
             // 
-            this.labelCauntClient.AutoSize = true;
-            this.labelCauntClient.Location = new System.Drawing.Point(176, 13);
-            this.labelCauntClient.Name = "labelCauntClient";
-            this.labelCauntClient.Size = new System.Drawing.Size(46, 17);
-            this.labelCauntClient.TabIndex = 3;
-            this.labelCauntClient.Text = "label1";
+            this.button4.Location = new System.Drawing.Point(17, 348);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(184, 37);
+            this.button4.TabIndex = 8;
+            this.button4.Text = "Показать всех клиентов";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.Button4_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(759, 25);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 29);
+            this.button3.TabIndex = 7;
+            this.button3.Text = "ОК";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.Button3_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(524, 31);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(48, 17);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Поиск";
+            // 
+            // textBoxSeath
+            // 
+            this.textBoxSeath.Location = new System.Drawing.Point(603, 28);
+            this.textBoxSeath.Name = "textBoxSeath";
+            this.textBoxSeath.Size = new System.Drawing.Size(138, 22);
+            this.textBoxSeath.TabIndex = 5;
             // 
             // tabControl1
             // 
@@ -140,32 +170,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Все клиенты";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(826, 277);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // textBoxSeath
-            // 
-            this.textBoxSeath.Location = new System.Drawing.Point(603, 28);
-            this.textBoxSeath.Name = "textBoxSeath";
-            this.textBoxSeath.Size = new System.Drawing.Size(138, 22);
-            this.textBoxSeath.TabIndex = 5;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(524, 31);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 17);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Поиск";
             // 
             // dataGridView1
             // 
@@ -189,46 +193,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(814, 261);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellContentClick);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(759, 25);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 29);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "ОК";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.Button3_Click);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(17, 348);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(184, 37);
-            this.button4.TabIndex = 8;
-            this.button4.Text = "Показать всех клиентов";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.Button4_Click);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(223, 348);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(184, 37);
-            this.button5.TabIndex = 9;
-            this.button5.Text = "Добавить клиента";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.Button5_Click);
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(436, 348);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(184, 37);
-            this.button6.TabIndex = 10;
-            this.button6.Text = "Изменить клиента";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.Button6_Click);
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -279,6 +243,54 @@
             // 
             this.tablGoogleBindingSource.DataSource = typeof(ConsoleApp.Model.TablGoogle);
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(826, 277);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // labelCauntClient
+            // 
+            this.labelCauntClient.AutoSize = true;
+            this.labelCauntClient.Location = new System.Drawing.Point(176, 13);
+            this.labelCauntClient.Name = "labelCauntClient";
+            this.labelCauntClient.Size = new System.Drawing.Size(46, 17);
+            this.labelCauntClient.TabIndex = 3;
+            this.labelCauntClient.Text = "label1";
+            // 
+            // labelCInfo
+            // 
+            this.labelCInfo.AutoSize = true;
+            this.labelCInfo.Location = new System.Drawing.Point(14, 13);
+            this.labelCInfo.Name = "labelCInfo";
+            this.labelCInfo.Size = new System.Drawing.Size(155, 17);
+            this.labelCInfo.TabIndex = 2;
+            this.labelCInfo.Text = "Количество клиентов:";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(13, 419);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(97, 37);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "Обновить";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(759, 420);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(99, 36);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Выход";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
             // userBindingSource
             // 
             this.userBindingSource.DataSource = typeof(ConsoleApp.Model.User);
@@ -287,15 +299,11 @@
             // 
             this.tablGoogleContextBindingSource.DataSource = typeof(ConsoleApp.TablGoogleContext);
             // 
-            // button7
+            // notifyIcon1
             // 
-            this.button7.Location = new System.Drawing.Point(650, 348);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(184, 37);
-            this.button7.TabIndex = 11;
-            this.button7.Text = "Удалить клиента ";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.Button7_Click);
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "GoogleTable";
+            this.notifyIcon1.Visible = true;
             // 
             // Form1
             // 
@@ -303,8 +311,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(904, 493);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Таблица клиентов";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -344,6 +353,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataTimeAddTableDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
     }
 }
 
